@@ -99,7 +99,7 @@ interface Credit {
 const credits = ref<Credit[]>([])
 onMounted(async () => {
   try {
-    const res = await fetch('images/collections/credits.json')
+    const res = await fetch(`${import.meta.env.BASE_URL}images/collections/credits.json`)
     if (res.ok) credits.value = await res.json()
   } catch {
     // credits file not available yet

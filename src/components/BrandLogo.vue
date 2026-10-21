@@ -3,7 +3,7 @@
 // Traced into public/images/brand/logo.svg and drawn as a one-colour CSS mask; set the height where it's used.
 defineProps<{ light?: boolean }>()
 
-const m = 'url(images/brand/logo.svg) center / contain no-repeat'
+const m = `url(${import.meta.env.BASE_URL}images/brand/logo.svg) center / contain no-repeat`
 const mask = { mask: m, WebkitMask: m }
 </script>
 

@@ -6,15 +6,17 @@ const UNSPLASH_ID = /^\d{10,}-[0-9a-f]+$/
 // Local paintings ship as name.jpg (1400px) plus name-800.jpg; room photos have one size
 const LOCAL_SIZED = /^images\/(exclusive|collections|jewellery)\/(?!.*-room\.jpg$).+\.jpg$/
 const small = (src: string) => src.replace(/\.jpg$/, '-800.jpg')
+// Pages live at nested addresses (/collections/art/), so local files need an absolute path
+const local = (src: string) => (/^(https?:|\/)/.test(src) ? src : `${import.meta.env.BASE_URL}${src}`)
 
 export function imgUrl(src: string, width = 900): string {
   if (UNSPLASH_ID.test(src)) return `https://images.unsplash.com/photo-${src}?auto=format&fit=crop&w=${width}&q=80`
-  if (LOCAL_SIZED.test(src) && width <= 800) return small(src)
-  return src
+  if (LOCAL_SIZED.test(src) && width <= 800) return local(small(src))
+  return local(src)
 }
 
 export function imgSrcset(src: string, widths = [480, 800, 1200, 1600]): string | undefined {
-  if (LOCAL_SIZED.test(src)) return `${small(src)} 800w, ${src} 1400w`
+  if (LOCAL_SIZED.test(src)) return `${local(small(src))} 800w, ${local(src)} 1400w`
   if (!UNSPLASH_ID.test(src)) return undefined
   return widths.map((w) => `${imgUrl(src, w)} ${w}w`).join(', ')
 }

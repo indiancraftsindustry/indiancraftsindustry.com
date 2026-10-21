@@ -9,6 +9,7 @@ import type { Product } from '../types'
 const KEY = 'ici-enquiry-bag'
 
 function load(): string[] {
+  if (typeof localStorage === 'undefined') return [] // pre-rendering at build time
   try {
     const saved = JSON.parse(localStorage.getItem(KEY) ?? '[]')
     return Array.isArray(saved) ? saved.filter((id) => typeof id === 'string') : []

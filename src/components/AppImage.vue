@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { imgSrcset, imgUrl } from '../lib/img'
 
 const props = withDefaults(
@@ -7,13 +7,20 @@ const props = withDefaults(
   { alt: '', width: 900, sizes: '100vw', eager: false },
 )
 
+const el = ref<HTMLImageElement | null>(null)
 const loaded = ref(false)
+// On a pre-built page the image can finish loading before the app starts, so the
+// load event is missed: check once on mount
+onMounted(() => {
+  if (el.value?.complete && el.value.naturalWidth) loaded.value = true
+})
 const url = computed(() => imgUrl(props.src, props.width))
 const srcset = computed(() => imgSrcset(props.src))
 </script>
 
 <template>
   <img
+    ref="el"
     :src="url"
     :srcset="srcset"
     :sizes="srcset ? sizes : undefined"

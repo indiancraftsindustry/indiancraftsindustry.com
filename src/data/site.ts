@@ -46,18 +46,22 @@ export const footerLinks = [
 
 // Boutique locations as listed on the client's Instagram profile, plus Hilton Goa Resort (address from the client).
 export const boutiques: Boutique[] = [
-  { city: 'New Delhi', name: 'Pullman & Novotel New Delhi Aerocity', note: 'Hotel shopping arcade, Hospitality District, Aerocity' },
-  { city: 'New Delhi', name: 'Aloft New Delhi Aerocity', note: 'Hospitality District, Aerocity' },
+  { city: 'New Delhi', name: 'Pullman & Novotel New Delhi Aerocity', note: 'Hotel shopping arcade, Hospitality District, Aerocity', locality: 'New Delhi', region: 'Delhi' },
+  { city: 'New Delhi', name: 'Aloft New Delhi Aerocity', note: 'Hospitality District, Aerocity', locality: 'New Delhi', region: 'Delhi' },
   { city: 'Delhi NCR', name: 'DoubleTree by Hilton', note: 'Hotel boutique, Delhi NCR' },
-  { city: 'Noida', name: 'Radisson Noida', note: 'Hotel boutique, Noida' },
-  { city: 'Greater Noida', name: 'Radisson Blu Greater Noida', note: 'Hotel boutique, Greater Noida' },
-  { city: 'Vrindavan', name: 'Nidhivan Sarovar Portico', note: 'Hotel boutique, Vrindavan' },
-  { city: 'Vrindavan', name: 'Nidhivan Palace', note: 'Hotel boutique, Vrindavan' },
+  { city: 'Noida', name: 'Radisson Noida', note: 'Hotel boutique, Noida', locality: 'Noida', region: 'Uttar Pradesh' },
+  { city: 'Greater Noida', name: 'Radisson Blu Greater Noida', note: 'Hotel boutique, Greater Noida', locality: 'Greater Noida', region: 'Uttar Pradesh' },
+  { city: 'Vrindavan', name: 'Nidhivan Sarovar Portico', note: 'Hotel boutique, Vrindavan', locality: 'Vrindavan', region: 'Uttar Pradesh' },
+  { city: 'Vrindavan', name: 'Nidhivan Palace', note: 'Hotel boutique, Vrindavan', locality: 'Vrindavan', region: 'Uttar Pradesh' },
   {
     city: 'Goa',
     name: 'Hilton Goa Resort',
     note: 'Hotel boutique, Candolim, Goa',
     address: 'Pilerne - Candolim Road, Saipem, Candolim, Goa 403515',
+    street: 'Pilerne - Candolim Road, Saipem',
+    locality: 'Candolim',
+    region: 'Goa',
+    postalCode: '403515',
   },
 ]
 

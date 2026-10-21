@@ -17,6 +17,8 @@ export interface ArtDetails {
   size?: string
   /** the photo shows bare canvas, so draw a frame in CSS */
   cssFrame?: boolean
+  /** "Painting" unless set, e.g. "Embroidered artwork" */
+  kind?: string
 }
 
 export interface Product {
@@ -43,6 +45,11 @@ export interface Boutique {
   note: string
   /** Full street address, when the client has supplied it */
   address?: string
+  /** Address parts for search engines (structured data) */
+  street?: string
+  locality?: string
+  region?: string
+  postalCode?: string
 }
 
 export interface Gemstone {

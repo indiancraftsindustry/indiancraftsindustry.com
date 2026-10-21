@@ -26,8 +26,15 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      - id: pages
+        uses: actions/configure-pages@v5
+      # The live custom domain builds at "/"; any other Pages address is a preview
+      # copy, so it gets its own base path and is kept out of search results.
       - run: npm run build
-      - uses: actions/configure-pages@v5
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+          VITE_SITE_URL: ${{ contains(steps.pages.outputs.base_url, '://indiancraftsindustry.com') && 'https://indiancraftsindustry.com' || steps.pages.outputs.base_url }}
+          VITE_NOINDEX: ${{ contains(steps.pages.outputs.base_url, '://indiancraftsindustry.com') && '0' || '1' }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

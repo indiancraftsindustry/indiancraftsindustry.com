@@ -22,18 +22,15 @@ onBeforeUnmount(() => stop())
 
 <template>
   <component :is="as" ref="root">
-    <span class="sr-only">{{ text }}</span>
-    <span aria-hidden="true">
-      <template v-for="(word, i) in words" :key="i">
-        <span class="inline-block overflow-hidden py-[0.14em] -my-[0.14em] align-top">
-          <span
-            class="inline-block transition-transform duration-[1100ms] ease-silk"
-            :class="shown ? 'translate-y-0' : 'translate-y-[115%]'"
-            :style="{ transitionDelay: `${delay + i * stagger}ms` }"
-            >{{ word }}</span
-          >
-        </span>{{ i < words.length - 1 ? ' ' : '' }}
-      </template>
-    </span>
+    <template v-for="(word, i) in words" :key="i">
+      <span class="inline-block overflow-hidden py-[0.14em] -my-[0.14em] align-top">
+        <span
+          class="inline-block transition-transform duration-[1100ms] ease-silk"
+          :class="shown ? 'translate-y-0' : 'translate-y-[115%]'"
+          :style="{ transitionDelay: `${delay + i * stagger}ms` }"
+          >{{ word }}</span
+        >
+      </span>{{ i < words.length - 1 ? ' ' : '' }}
+    </template>
   </component>
 </template>

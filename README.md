@@ -11,13 +11,26 @@ A fully static site built with **Vue 3, TypeScript, Tailwind CSS v4 and Vite**. 
 ```bash
 npm install
 npm run dev        # http://localhost:5173
-npm run build      # type-check + production build into dist/
+npm run build      # type-check, build, then pre-render every page into dist/
 npm run preview    # serve the built site
 ```
 
-`dist/` can be uploaded to any static host or sub-folder (hash routing, relative paths, no server rules needed).
+**Live site:** every push to `main` is built and published to https://indiancraftsindustry.com by `.github/workflows/deploy.yml` (GitHub Pages with the custom domain).
 
-**Demo on GitHub Pages:** every push to `main` is built and published by `.github/workflows/deploy.yml` to https://the-erag.github.io/indiancraftsindustry.com/ (one-time setup: Settings → Pages → Source: GitHub Actions).
+## How the build works (SEO)
+
+Pages use clean addresses (`/collections/art/`). After the normal Vite build, `vite build --ssr` and `scripts/prerender.mjs` write a real HTML file for every page, so search engines, AI crawlers and WhatsApp/Facebook previews see the full content without running JavaScript. The browser then takes over the page as usual. Old `/#/...` links redirect to the clean address.
+
+| Output in `dist/` | Made from |
+| --- | --- |
+| `<page>/index.html` for every page (title, description, canonical, share tags, schema.org data) | `src/lib/seo.ts` |
+| `sitemap.xml` (indexable pages only) and `robots.txt` | `src/lib/seo.ts` |
+| `llms.txt` and `llms-full.txt` (plain-text guides for AI assistants) | `src/lib/llms.ts` |
+| `404.html` and redirect pages for old addresses | `scripts/prerender.mjs`, `src/router.ts` |
+
+New pieces in `src/data/` are picked up automatically. Sample jewellery that still uses stock photos is marked `noindex` and left out of the sitemap until real photos replace it. A copy published anywhere other than indiancraftsindustry.com is built with `noindex` so it never competes with the live site.
+
+After each deploy: submit `https://indiancraftsindustry.com/sitemap.xml` in Google Search Console (once) and use URL Inspection on important pages.
 
 ## Where to edit content
 
@@ -28,6 +41,8 @@ npm run preview    # serve the built site
 | The 9 collections (copy, highlights, images) | `src/data/collections.ts` |
 | Jewellery pieces and care guides | `src/data/catalog.ts` |
 | Exclusive Collection (original paintings) | `src/data/exclusive.ts` |
+| Client jewellery (from their photos) | `src/data/jewellery.ts` |
+| Page titles, descriptions, structured data | `src/lib/seo.ts` |
 | Colours, fonts, type scale | `src/style.css` |
 
 ## Before going live
