@@ -18,6 +18,8 @@ export interface Head {
   url: string
   image: string
   imageAlt: string
+  /** known only for the default share image */
+  imageSize?: [number, number]
   type: 'website' | 'product' | 'article'
   noindex: boolean
   jsonLd: Json[]
@@ -29,7 +31,8 @@ const PREVIEW = import.meta.env.VITE_NOINDEX === '1'
 const BRAND = 'INDIAN CRAFTS INDUSTRY'
 const ORG_ID = `${SITE}/#org`
 const WEBSITE_ID = `${SITE}/#website`
-const DEFAULT_IMAGE = 'images/og-default.jpg'
+// Link-preview image: logo with three pieces in arched niches (1200x630)
+const DEFAULT_IMAGE = 'images/share.jpg'
 const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
 /** Canonical address for a route path. Pages are folders, so they end in a slash. */
@@ -193,6 +196,7 @@ function build(page: Page): Head {
     url,
     image,
     imageAlt: page.imageAlt ?? 'Indian Crafts Industry',
+    imageSize: page.image ? undefined : [1200, 630],
     type: page.type ?? 'website',
     noindex: PREVIEW || !!page.noindex,
     jsonLd: page.noindex ? [] : [webPage, ...crumbs, ...(page.jsonLd ?? [])],
@@ -365,6 +369,8 @@ function metaHtml(h: Head) {
     `<meta property="og:url" content="${esc(h.url)}">`,
     `<meta property="og:image" content="${esc(h.image)}">`,
     `<meta property="og:image:alt" content="${esc(h.imageAlt)}">`,
+    h.imageSize ? `<meta property="og:image:width" content="${h.imageSize[0]}">` : '',
+    h.imageSize ? `<meta property="og:image:height" content="${h.imageSize[1]}">` : '',
     `<meta name="twitter:card" content="summary_large_image">`,
     `<meta name="twitter:title" content="${esc(h.title)}">`,
     `<meta name="twitter:description" content="${esc(h.description)}">`,
