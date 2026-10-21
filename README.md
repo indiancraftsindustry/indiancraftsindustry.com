@@ -32,7 +32,7 @@ npm run preview    # serve the built site
 
 ## Before going live
 
-- Replace the placeholder phone, WhatsApp number and email in `src/data/site.ts`.
+- Confirm the phone, WhatsApp number and email in `src/data/site.ts` (taken from the client's posters).
 - Jewellery products, prices and specifications are sample data; replace them with the real inventory.
 - Shipping, returns, privacy and terms on the Customer Care page are draft wording to be confirmed.
-- Collection photos in `public/images/collections/` are licensed Wikimedia Commons placeholders (see `credits.json`); jewellery photos are Unsplash placeholders. Paintings in `public/images/exclusive/` are the client's own work.
+- Collection photos in `public/images/collections/` are licensed Wikimedia Commons placeholders (see `credits.json`); jewellery in `public/images/jewellery/` (plus the cashmere and statue photos in `collections/`) is the client's own, cut from their posters; the older sample jewellery still uses Unsplash placeholders. Paintings in `public/images/exclusive/` are the client's own work.

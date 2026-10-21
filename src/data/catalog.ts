@@ -7,6 +7,7 @@
 // ---------------------------------------------------------------------------
 import type { CareGuide, Category, Gemstone, Product } from '../types'
 import { exclusiveProducts } from './exclusive'
+import { clientJewellery } from './jewellery'
 
 // Editorial imagery used across the site
 export const media = {
@@ -37,37 +38,37 @@ export const categories: Category[] = [
     slug: 'gemstones',
     name: 'Natural gemstones',
     blurb: 'Rubies, emeralds, sapphires and more, set in gold and silver.',
-    cover: '1602751584552-8ba73aad10e1',
+    cover: 'images/jewellery/blue-halo-ring.jpg',
   },
   {
     slug: 'wedding-rings',
     name: 'Wedding & couple rings',
     blurb: 'Engagement rings, matching rings for couples and stacking rings. We engrave your names inside for free.',
-    cover: '1606800052052-a08af7148866',
+    cover: 'images/jewellery/split-band-and-halo-ring.jpg',
   },
   {
     slug: 'silver',
     name: 'Silver jewellery',
     blurb: 'Solid 925 silver, polished by hand. Light, shiny and easy to wear every day.',
-    cover: '1588444837495-c6cfeb53f32d',
+    cover: 'images/jewellery/oxidised-sunflower-set.jpg',
   },
   {
     slug: 'earrings',
     name: 'Earrings',
     blurb: 'Studs, drops and hoops for everyday wear and special occasions.',
-    cover: '1535632066927-ab7c9ab60908',
+    cover: 'images/jewellery/green-swirl-earrings.jpg',
   },
   {
     slug: 'necklaces',
     name: 'Necklaces & pendants',
     blurb: 'Statement necklaces for weddings and small pendants for every day.',
-    cover: '1618403088890-3d9ff6f4c8b1',
+    cover: 'images/jewellery/riviera-necklace.jpg',
   },
   {
     slug: 'bracelets',
     name: 'Bracelets & bangles',
     blurb: 'Handmade bangle sets and fine diamond bracelets.',
-    cover: '1583292650898-7d22cd27ca6f',
+    cover: 'images/jewellery/two-tone-link-bracelet.jpg',
   },
   {
     slug: 'bridal',
@@ -567,7 +568,8 @@ const baseProducts: Product[] = [
 ]
 
 // Exclusive originals come first so they lead every "all products" listing
-export const products: Product[] = [...exclusiveProducts, ...baseProducts]
+// The client's own pieces come first in every jewellery category
+export const products: Product[] = [...exclusiveProducts, ...clientJewellery, ...baseProducts]
 
 // The nine gemstones of Indian astrology (Navratna) and what people wear them for.
 export const navratna: Gemstone[] = [
@@ -594,12 +596,12 @@ export function relatedProducts(product: Product, count = 4): Product[] {
 }
 
 export const signatureIds = [
-  'mehrunissa-halo-diamond-ring',
-  'neelam-sapphire-drop-earrings',
-  'manik-ruby-ring',
-  'rajwada-temple-necklace-set',
-  'phoolwari-amethyst-citrine-ring',
-  'gulmohar-rose-gold-bracelet',
-  'tara-silver-tennis-bracelet',
-  'jodi-couple-bands',
+  'peacock-swirl-earrings',
+  'royal-blue-halo-ring',
+  'riviera-stone-necklace',
+  'two-tone-link-bracelet',
+  'split-band-and-halo-ring',
+  'oxidised-sunflower-set',
+  'pave-huggie-hoops',
+  'golden-stone-set-bangle',
 ]

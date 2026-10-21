@@ -12,11 +12,11 @@ export const site = {
   instagram: 'https://www.instagram.com/indiancraftsindustry/',
   instagramHandle: '@indiancraftsindustry',
 
-  // TODO: replace with the client's real phone, WhatsApp and email
-  phoneDisplay: '+91 XXXXX XXXXX',
-  phone: '+910000000000',
-  whatsapp: '910000000000', // country code + number, digits only
-  email: 'hello@indiancraftsindustry.com',
+  // From the client's own posters (October 2026)
+  phoneDisplay: '+91 78384 70020',
+  phone: '+917838470020',
+  whatsapp: '917838470020', // country code + number, digits only
+  email: 'info@indiancraftsindustry.com',
 
   hours: 'Open every day, 10 am to 10 pm',
 }

@@ -43,7 +43,7 @@ export const collections: Collection[] = [
     ],
     punchlines: ['Woven with Tradition. Wrapped in Elegance.', 'A Touch of Warmth. A Lifetime of Meaning.', 'Softness You Feel. Heritage You Remember.'],
     highlights: ['Pashmina Shawls', 'Cashmere Wraps', 'Stoles', 'Fine Scarves', 'Elegant Textile Gifts'],
-    images: ['images/collections/pashmina-1.jpg', 'images/collections/pashmina-2.jpg'],
+    images: ['images/collections/cashmere-stole.jpg', 'images/collections/pashmina-1.jpg'],
     to: '/collections/pashmina',
   },
   {
@@ -139,7 +139,7 @@ export const collections: Collection[] = [
       'Decorative Bowls, Vessels & Ornamental Pieces',
       'Exclusive Collectibles & Cultural Gifts',
     ],
-    images: ['images/collections/metal-1.jpg', 'images/collections/metal-2.jpg'],
+    images: ['images/collections/krishna-with-cow-statue.jpg', 'images/collections/standing-ganesha-statue.jpg'],
     to: '/collections/metal-artefacts',
   },
   {

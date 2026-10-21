@@ -4,7 +4,7 @@
 
 const UNSPLASH_ID = /^\d{10,}-[0-9a-f]+$/
 // Local paintings ship as name.jpg (1400px) plus name-800.jpg; room photos have one size
-const LOCAL_SIZED = /^images\/(exclusive|collections)\/(?!.*-room\.jpg$).+\.jpg$/
+const LOCAL_SIZED = /^images\/(exclusive|collections|jewellery)\/(?!.*-room\.jpg$).+\.jpg$/
 const small = (src: string) => src.replace(/\.jpg$/, '-800.jpg')
 
 export function imgUrl(src: string, width = 900): string {
