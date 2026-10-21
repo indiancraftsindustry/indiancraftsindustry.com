@@ -39,7 +39,7 @@ onBeforeUnmount(() => window.removeEventListener('resize', update))
   <div>
     <div
       ref="track"
-      class="-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-4 pb-2 [scroll-padding-inline:16px] [scrollbar-width:none] sm:-mx-[clamp(16px,4vw,48px)] sm:px-[clamp(16px,4vw,48px)] sm:[scroll-padding-inline:clamp(16px,4vw,48px)]"
+      class="-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-4 pt-2 pb-2 [scroll-padding-inline:16px] [scrollbar-width:none] sm:-mx-[clamp(16px,4vw,48px)] sm:px-[clamp(16px,4vw,48px)] sm:[scroll-padding-inline:clamp(16px,4vw,48px)]"
       role="region"
       :aria-label="label"
       tabindex="0"

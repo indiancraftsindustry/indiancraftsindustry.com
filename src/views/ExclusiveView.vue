@@ -111,17 +111,17 @@ const promises: { icon: IconName; title: string; text: string }[] = [
 
         <TransitionGroup
           tag="div"
-          class="columns-1 gap-x-12 sm:columns-2 lg:columns-3"
+          class="columns-2 gap-x-4 sm:gap-x-8 lg:columns-3 lg:gap-x-12"
           enter-from-class="translate-y-6 opacity-0"
           enter-active-class="transition-[opacity,transform] duration-700 ease-silk"
           leave-active-class="hidden"
         >
-          <article v-for="(p, i) in shown" :key="p.id" v-reveal="(i % 3) * 100" class="group relative mb-10 sm:mb-16 break-inside-avoid">
+          <article v-for="(p, i) in shown" :key="p.id" v-reveal="(i % 3) * 100" class="group relative mb-9 break-inside-avoid sm:mb-16">
             <RouterLink :to="`/product/${p.id}`" class="block" :aria-label="p.name">
-              <ArtFrame :product="p" :width="800" sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw" class="w-full transition-transform duration-700 ease-silk group-hover:-translate-y-1.5" />
+              <ArtFrame :product="p" :width="800" sizes="(max-width: 1024px) 50vw, 30vw" class="w-full transition-transform duration-700 ease-silk group-hover:-translate-y-1.5" />
             </RouterLink>
             <button
-              class="absolute top-3 right-3 z-10 grid size-11 place-items-center rounded-full transition-colors duration-300"
+              class="absolute top-2 right-2 z-10 grid size-11 place-items-center rounded-full shadow-[0_6px_16px_-8px_rgb(0_0_0/0.5)] transition-colors duration-300 sm:top-3 sm:right-3"
               :class="inBag(p.id) ? 'bg-ruby text-white' : 'bg-marble/90 text-ink hover:bg-marble'"
               :aria-label="inBag(p.id) ? `Remove ${p.name} from enquiry bag` : `Save ${p.name} to enquiry bag`"
               :aria-pressed="inBag(p.id)"
@@ -129,14 +129,14 @@ const promises: { icon: IconName; title: string; text: string }[] = [
             >
               <AppIcon name="heart" :size="18" :class="inBag(p.id) && 'fill-current'" />
             </button>
-            <div class="mt-5 flex items-start justify-between gap-4">
+            <div class="mt-4 sm:mt-5 sm:flex sm:items-start sm:justify-between sm:gap-4">
               <div>
-                <h3 class="font-display text-[22px] leading-snug">
+                <h3 class="font-display text-[clamp(19px,2vw,22px)] leading-snug">
                   <RouterLink :to="`/product/${p.id}`" class="hover:text-peacock-3">{{ p.name }}</RouterLink>
                 </h3>
                 <p class="mt-1 text-base text-ink-muted">{{ p.art?.theme }}<template v-if="p.art?.size">, {{ p.art.size }}</template></p>
               </div>
-              <p class="shrink-0 pt-1 text-base font-medium" :class="p.price ? 'text-ink' : 'text-peacock-3'">{{ priceLabel(p) }}</p>
+              <p class="mt-1 shrink-0 text-base font-medium sm:mt-0 sm:pt-1" :class="p.price ? 'text-ink' : 'text-peacock-3'">{{ priceLabel(p) }}</p>
             </div>
           </article>
         </TransitionGroup>

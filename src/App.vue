@@ -6,6 +6,7 @@ import MobileTabBar from './components/MobileTabBar.vue'
 import AppIcon from './components/AppIcon.vue'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { whatsappLink } from './data/site'
+import { NICHE_ARCH } from './lib/arch'
 
 // Announcement bar alternates between its messages every few seconds
 // `short` is the one-line version shown on phones, where the whole bar is the link
@@ -55,6 +56,11 @@ onBeforeUnmount(() => window.clearInterval(timer))
   </div>
 
   <SiteHeader />
+
+  <!-- Shared arch shape for product niches (see src/lib/arch.ts) -->
+  <svg width="0" height="0" class="absolute" aria-hidden="true">
+    <clipPath id="niche-arch" clipPathUnits="objectBoundingBox"><path :d="NICHE_ARCH" /></clipPath>
+  </svg>
 
   <main id="main" tabindex="-1" class="outline-none">
     <RouterView v-slot="{ Component, route }">

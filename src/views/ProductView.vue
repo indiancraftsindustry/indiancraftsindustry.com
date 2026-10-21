@@ -5,7 +5,7 @@ import AppImage from '../components/AppImage.vue'
 import ArtFrame from '../components/ArtFrame.vue'
 import AppIcon, { type IconName } from '../components/AppIcon.vue'
 import UiButton from '../components/UiButton.vue'
-import ProductCard from '../components/ProductCard.vue'
+import ProductGrid from '../components/ProductGrid.vue'
 import RevealText from '../components/RevealText.vue'
 import NotFoundView from './NotFoundView.vue'
 import { careGuides, getCategory, getProduct, relatedProducts } from '../data/catalog'
@@ -80,7 +80,7 @@ function save() {
       </nav>
     </div>
 
-    <section class="shell grid gap-8 pt-2 pb-10 sm:gap-12 sm:py-10 lg:grid-cols-[1.1fr_1fr] lg:gap-20 lg:py-14">
+    <section class="shell grid grid-cols-1 gap-8 pt-2 pb-10 sm:gap-12 sm:py-10 lg:grid-cols-[1.1fr_1fr] lg:gap-20 lg:py-14">
       <!-- Gallery -->
       <div class="animate-unveil lg:sticky lg:top-24 lg:self-start">
         <!-- Phones and tablets: full-width swipeable photos -->
@@ -294,11 +294,7 @@ function save() {
     <section class="bg-marble-deep py-14 sm:py-20 lg:py-28">
       <div class="shell">
         <RevealText :key="product.id" :text="art ? 'More original paintings' : 'You may also like'" class="mb-10 font-display text-[clamp(30px,3.6vw,48px)]" />
-        <div class="grid grid-cols-2 gap-x-4 gap-y-12 lg:grid-cols-4 lg:gap-x-7">
-          <div v-for="(p, i) in related" :key="p.id" v-reveal="i * 100">
-            <ProductCard :product="p" />
-          </div>
-        </div>
+        <ProductGrid :key="product.id" :items="related" />
       </div>
     </section>
 

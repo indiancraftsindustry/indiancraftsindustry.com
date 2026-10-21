@@ -10,6 +10,9 @@ import MarqueeBand from '../components/MarqueeBand.vue'
 import ExclusiveGallery from '../components/ExclusiveGallery.vue'
 import BoutiqueList from '../components/BoutiqueList.vue'
 import InstagramGrid from '../components/InstagramGrid.vue'
+import ArchBrowse from '../components/ArchBrowse.vue'
+import ShopShowcase from '../components/ShopShowcase.vue'
+import NicheImage from '../components/NicheImage.vue'
 import { getProduct, media, signatureIds } from '../data/catalog'
 import { collections } from '../data/collections'
 import { artisans, brand, curation, global, hero, intro, invitation, newGeneration, philosophy, values } from '../data/brand'
@@ -24,6 +27,28 @@ const jewellery = signatureIds
 
 // Bento: jewellery is the large tile; the other eight fill the grid around it
 const tileClass = (slug: string) => (slug === 'jewellery' ? 'col-span-2 aspect-[4/3] md:row-span-2 md:aspect-auto' : 'aspect-[3/4]')
+
+// The intro's own words, "culture, character and continuity", each shown by a real piece
+const pillars = [
+  {
+    word: 'Culture',
+    line: 'Paintings of Krishna, Radha, Shiva and India’s wildlife, each one an original.',
+    to: '/collections/art',
+    image: 'images/exclusive/krishna-in-meditation.jpg',
+  },
+  {
+    word: 'Character',
+    line: 'Jewellery chosen for the person who wears it, from statement earrings to everyday silver.',
+    to: '/collections/jewellery',
+    image: 'images/jewellery/green-swirl-earrings.jpg',
+  },
+  {
+    word: 'Continuity',
+    line: 'Artefacts, textiles and gifts made to be kept, given and passed on.',
+    to: '/collections/metal-artefacts',
+    image: 'images/collections/krishna-with-cow-statue.jpg',
+  },
+]
 
 // Who visits, and where each kind of visitor might like to start (handover section 7)
 const seekerLinks = ['/collections/art', '/collections/carpets', '/collections/pashmina', '/collections/gifts']
@@ -92,15 +117,41 @@ const seekerLinks = ['/collections/art', '/collections/carpets', '/collections/p
       <MarqueeBand :items="collections.map((c) => c.short)" size="md" />
     </section>
 
+    <!-- ============================== BROWSE + EVERY PIECE ============================== -->
+    <div class="border-y border-ink/10 bg-marble-deep/60 py-7 sm:py-9">
+      <div class="shell"><ArchBrowse /></div>
+    </div>
+    <ShopShowcase />
+
     <!-- ============================== 14. BRAND INTRODUCTION ============================== -->
-    <section class="shell py-16 sm:py-24 text-center lg:py-32">
-      <p v-reveal class="text-base tracking-[0.08em] text-zari-deep">{{ brand.essence }}</p>
-      <RevealText
-        :text="hero.coda"
-        class="mx-auto mt-6 max-w-[22ch] font-display text-[clamp(34px,4.4vw,62px)] leading-[1.1] italic"
-      />
-      <p v-reveal="200" class="mx-auto mt-10 max-w-[62ch] text-lg text-ink-soft">{{ intro[0] }}</p>
-      <p v-reveal="300" class="mx-auto mt-5 max-w-[62ch] text-lg text-ink-soft max-sm:hidden">{{ hero.body[2] }}</p>
+    <section class="bg-marble-deep py-16 sm:py-24 lg:py-32">
+      <div class="shell grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+        <div>
+          <p v-reveal class="text-base tracking-[0.06em] text-zari-deep">{{ brand.essence }}</p>
+          <RevealText :text="hero.coda" class="mt-5 max-w-[19ch] font-display text-[clamp(34px,3.8vw,54px)] leading-[1.1] italic" />
+          <p v-reveal="200" class="mt-7 max-w-[52ch] text-lg text-ink-soft">{{ intro[0] }}</p>
+          <div v-reveal="300" class="mt-9 max-lg:hidden">
+            <UiButton to="/our-story" variant="outline">Read our story</UiButton>
+          </div>
+        </div>
+
+        <!-- culture, character, continuity: one real piece each -->
+        <ul class="grid gap-5 sm:grid-cols-3 sm:gap-6 sm:pb-12 lg:gap-8">
+          <li v-for="(p, i) in pillars" :key="p.word" v-reveal="i * 120" :class="i === 1 && 'sm:translate-y-12'">
+            <RouterLink :to="p.to" class="group grid grid-cols-[92px_1fr] items-center gap-5 sm:block">
+              <NicheImage :src="p.image" :width="700" sizes="(max-width: 640px) 100px, 22vw" />
+              <span class="block sm:mt-6 sm:text-center">
+                <span class="block font-display text-[26px] leading-tight group-hover:text-peacock-3">{{ p.word }}</span>
+                <span class="mt-1.5 block text-base leading-relaxed text-ink-soft">{{ p.line }}</span>
+              </span>
+            </RouterLink>
+          </li>
+        </ul>
+
+        <div v-reveal class="lg:hidden">
+          <UiButton to="/our-story" variant="outline">Read our story</UiButton>
+        </div>
+      </div>
     </section>
 
     <!-- ============================== EXCLUSIVE ART (gallery wall) ============================== -->

@@ -7,7 +7,7 @@ import { useRoute, useRouter } from 'vue-router'
 import AppIcon from '../components/AppIcon.vue'
 import AppImage from '../components/AppImage.vue'
 import UiButton from '../components/UiButton.vue'
-import ProductCard from '../components/ProductCard.vue'
+import ProductGrid from '../components/ProductGrid.vue'
 import ParallaxImage from '../components/ParallaxImage.vue'
 import RevealText from '../components/RevealText.vue'
 import MarqueeBand from '../components/MarqueeBand.vue'
@@ -188,11 +188,7 @@ const enquiry = computed(() =>
           </label>
         </div>
 
-        <div v-if="list.length" class="grid grid-cols-2 gap-x-4 gap-y-12 md:grid-cols-3 lg:grid-cols-4 lg:gap-x-7">
-          <div v-for="(p, i) in list" :key="p.id" v-reveal="(i % 4) * 90">
-            <ProductCard :product="p" />
-          </div>
-        </div>
+        <ProductGrid v-if="list.length" :items="list" />
         <div v-else class="mx-auto max-w-md py-16 text-center">
           <h3 class="font-display text-3xl">Nothing matches this search</h3>
           <p class="mt-3 text-ink-soft">Try a different word, or ask us. We can often find or make a piece for you.</p>

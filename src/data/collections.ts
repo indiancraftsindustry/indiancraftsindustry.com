@@ -24,7 +24,7 @@ export const collections: Collection[] = [
     ],
     punchlines: ['Wear a Story. Treasure a Legacy.', 'Jewellery That Speaks Beyond Words.', 'Crafted for the Moment. Cherished for Generations.'],
     highlights: ['Gemstone Jewellery', 'Silver Jewellery', 'Earrings', 'Rings', 'Statement Pieces', 'Wedding & Celebration Gifts'],
-    images: ['1602751584552-8ba73aad10e1', '1535632066927-ab7c9ab60908', '1588444837495-c6cfeb53f32d'],
+    images: ['images/jewellery/green-swirl-earrings.jpg', 'images/jewellery/riviera-necklace.jpg', 'images/jewellery/oxidised-sunflower-set.jpg'],
     productCategories: JEWELLERY_CATEGORIES,
     to: '/collections/jewellery',
   },

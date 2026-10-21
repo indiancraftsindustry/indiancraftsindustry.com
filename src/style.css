@@ -165,6 +165,12 @@
     cursor: pointer;
   }
 
+  /* Page-width grids are one column on phones: keep that column inside the screen even
+     when a child (a swipe row, a long option) is wider. Breakpoint grid-cols-* still win. */
+  .shell.grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   /* A select sizes itself to its longest option; let it shrink to fit phones */
   input,
   select,
@@ -240,11 +246,18 @@
   opacity: 0;
   transform: translate3d(64px, 0, 0);
 }
-/* On phones, side reveals rise instead, so nothing pokes past the screen edge */
+/* On phones, side reveals rise instead, so nothing pokes past the screen edge,
+   and every reveal is quicker: thumbs scroll fast and should never meet faint cards */
 @media (max-width: 767px) {
   .rv-left:not(.is-in),
   .rv-right:not(.is-in) {
     transform: translate3d(0, 40px, 0);
+  }
+  .rv {
+    transition-duration: 0.5s, 0.6s, 0.8s;
+  }
+  .rv-up:not(.is-in) {
+    transform: translate3d(0, 28px, 0);
   }
 }
 .rv-mask {
