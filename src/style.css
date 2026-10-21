@@ -1,0 +1,266 @@
+@import 'tailwindcss';
+
+/* ==========================================================================
+   Indian Crafts Industry — design tokens
+   Peacock green and zari gold on marble white, with ruby red for offers.
+   Playfair Display for headings, Poppins for everything else. Type sizes are
+   set one step larger than Tailwind's defaults so text stays easy to read.
+   ========================================================================== */
+
+@theme {
+  --color-marble: #f8f4ec;
+  --color-marble-deep: #efe8dc;
+  --color-stone: #dcd7cb;
+  --color-ink: #171614;
+  --color-ink-soft: #46433d;
+  --color-ink-muted: #6b665c;
+  --color-peacock: #0f2e2e;
+  --color-peacock-2: #17403f;
+  --color-peacock-3: #24605d;
+  --color-zari: #b8893b;
+  --color-zari-light: #dcc08a;
+  --color-zari-deep: #7e5a1e;
+  --color-ruby: #9e1b32;
+  --color-whatsapp: #1c7a4b;
+  --color-gallery: #181512;
+  --color-gallery-2: #24201b;
+  --color-wall: #ebe7df;
+
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.55;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.65;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.65;
+  --text-xl: 1.375rem;
+  --text-xl--line-height: 1.45;
+  --text-2xl: 1.625rem;
+  --text-2xl--line-height: 1.3;
+  --text-3xl: 2rem;
+  --text-3xl--line-height: 1.2;
+
+  --ease-silk: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-out-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  --animate-rise: rise 1.1s var(--ease-silk) both;
+  --animate-unveil: unveil 1.6s var(--ease-silk) both;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee-reverse: marquee 46s linear infinite reverse;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-spin-slow: spin 60s linear infinite;
+  --animate-draw: draw 2.4s var(--ease-silk) 0.3s both;
+  --animate-kenburns: kenburns 18s ease-out both;
+  --animate-scroll-cue: scroll-cue 2.2s var(--ease-silk) infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @keyframes float {
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes kenburns {
+    from {
+      transform: scale(1.14);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes scroll-cue {
+    0% {
+      transform: scaleY(0);
+      transform-origin: top;
+    }
+    45% {
+      transform: scaleY(1);
+      transform-origin: top;
+    }
+    55% {
+      transform: scaleY(1);
+      transform-origin: bottom;
+    }
+    100% {
+      transform: scaleY(0);
+      transform-origin: bottom;
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(36px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes unveil {
+    from {
+      opacity: 0;
+      transform: scale(1.08);
+      filter: saturate(0.4);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 112px;
+  }
+
+  body {
+    @apply bg-marble font-sans text-[18px] leading-[1.7] font-normal text-ink antialiased;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-medium text-balance;
+    letter-spacing: -0.005em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    @apply bg-zari-light text-ink;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-3 outline-zari;
+  }
+
+  button,
+  [role='button'] {
+    cursor: pointer;
+  }
+
+  /* A select sizes itself to its longest option; let it shrink to fit phones */
+  input,
+  select,
+  textarea {
+    min-width: 0;
+  }
+}
+
+/* Page-width wrapper with fluid side gutters */
+@utility shell {
+  width: 100%;
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+}
+
+/* Gilt picture frame used around hand-painted art */
+@utility gilt {
+  padding: clamp(10px, 1.6vw, 18px);
+  background: linear-gradient(135deg, #7e5a1e, #e8d29f 28%, #a67c3a 52%, #f1dfb2 74%, #7e5a1e);
+  box-shadow:
+    0 40px 70px -40px rgb(15 46 46 / 0.6),
+    inset 0 0 0 1px rgb(0 0 0 / 0.18);
+}
+
+/* Faceted gemstone swatch used in the Navratna guide */
+@utility gem {
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle at 32% 28%, rgb(255 255 255 / 0.85) 0 6%, transparent 18%),
+    conic-gradient(
+      from 20deg,
+      var(--gem-dark),
+      var(--gem),
+      var(--gem-light),
+      var(--gem),
+      var(--gem-dark),
+      var(--gem),
+      var(--gem-light),
+      var(--gem-dark)
+    );
+  box-shadow:
+    inset 0 -6px 14px rgb(0 0 0 / 0.35),
+    inset 0 4px 10px rgb(255 255 255 / 0.25),
+    0 14px 30px -12px var(--gem-dark);
+}
+
+/* Scroll reveal states, toggled by the v-reveal directive (src/lib/motion.ts).
+   Apply v-reveal to wrappers, not to elements with their own transforms. */
+.rv {
+  transition:
+    opacity 0.9s var(--ease-out-soft),
+    transform 1.1s var(--ease-silk),
+    clip-path 1.3s var(--ease-silk);
+  transition-delay: var(--rv-delay, 0ms);
+}
+.rv-up:not(.is-in) {
+  opacity: 0;
+  transform: translate3d(0, 56px, 0);
+}
+.rv-fade:not(.is-in) {
+  opacity: 0;
+}
+.rv-zoom:not(.is-in) {
+  opacity: 0;
+  transform: scale(0.92);
+}
+.rv-left:not(.is-in) {
+  opacity: 0;
+  transform: translate3d(-64px, 0, 0);
+}
+.rv-right:not(.is-in) {
+  opacity: 0;
+  transform: translate3d(64px, 0, 0);
+}
+/* On phones, side reveals rise instead, so nothing pokes past the screen edge */
+@media (max-width: 767px) {
+  .rv-left:not(.is-in),
+  .rv-right:not(.is-in) {
+    transform: translate3d(0, 40px, 0);
+  }
+}
+.rv-mask {
+  clip-path: inset(0 0 0 0);
+}
+.rv-mask:not(.is-in) {
+  clip-path: inset(100% 0 0 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
