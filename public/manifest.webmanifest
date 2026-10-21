@@ -1,0 +1,25 @@
+{
+  "id": "./",
+  "name": "Indian Crafts Industry",
+  "short_name": "Indian Crafts",
+  "description": "Original Indian paintings, gemstone and silver jewellery, Pashmina, carpets and heritage crafts, with boutiques in Delhi NCR, Vrindavan and Goa.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f8f4ec",
+  "theme_color": "#0f2e2e",
+  "lang": "en-IN",
+  "categories": ["shopping", "lifestyle"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Original paintings", "short_name": "Paintings", "url": "./collections/art/", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Jewellery", "url": "./collections/jewellery/", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Our boutiques", "short_name": "Boutiques", "url": "./boutiques/", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Contact us", "short_name": "Contact", "url": "./contact/", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

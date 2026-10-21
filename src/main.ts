@@ -1,6 +1,7 @@
 import { createWebHistory } from 'vue-router'
 import { createApp } from './app'
 import { applyHead } from './lib/seo'
+import { initInstall } from './lib/install'
 import './style.css'
 
 const base = import.meta.env.BASE_URL
@@ -17,3 +18,9 @@ if (legacy) {
 const { app, router } = createApp(createWebHistory(base), { hydrate: root.hasChildNodes() })
 router.afterEach((to) => applyHead(to))
 router.isReady().then(() => app.mount(root))
+
+// Installable app: listen for the browser's install prompt, and register the service worker
+initInstall()
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register(`${base}sw.js`).catch(() => {}))
+}

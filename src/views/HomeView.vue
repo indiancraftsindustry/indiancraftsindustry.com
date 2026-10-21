@@ -136,8 +136,8 @@ const seekerLinks = ['/collections/art', '/collections/carpets', '/collections/p
         </div>
 
         <!-- culture, character, continuity: one real piece each -->
-        <ul class="grid gap-5 sm:grid-cols-3 sm:gap-6 sm:pb-12 lg:gap-8">
-          <li v-for="(p, i) in pillars" :key="p.word" v-reveal="i * 120" :class="i === 1 && 'sm:translate-y-12'">
+        <ul class="grid gap-5 sm:grid-cols-3 sm:gap-6 lg:gap-8">
+          <li v-for="(p, i) in pillars" :key="p.word" v-reveal="i * 120">
             <RouterLink :to="p.to" class="group grid grid-cols-[92px_1fr] items-center gap-5 sm:block">
               <NicheImage :src="p.image" :width="700" sizes="(max-width: 640px) 100px, 22vw" />
               <span class="block sm:mt-6 sm:text-center">

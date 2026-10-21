@@ -3,6 +3,7 @@ import SiteHeader from './components/SiteHeader.vue'
 import SiteFooter from './components/SiteFooter.vue'
 import BagDrawer from './components/BagDrawer.vue'
 import MobileTabBar from './components/MobileTabBar.vue'
+import InstallPrompt from './components/InstallPrompt.vue'
 import AppIcon from './components/AppIcon.vue'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { whatsappLink } from './data/site'
@@ -79,6 +80,7 @@ onBeforeUnmount(() => window.clearInterval(timer))
   <SiteFooter />
   <BagDrawer />
   <MobileTabBar />
+  <InstallPrompt />
 
   <a
     :href="whatsappLink('Namaste! I found you on indiancraftsindustry.com and would like to know more.')"

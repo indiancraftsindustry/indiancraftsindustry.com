@@ -32,6 +32,10 @@ New pieces in `src/data/` are picked up automatically. Sample jewellery that sti
 
 After each deploy: submit `https://indiancraftsindustry.com/sitemap.xml` in Google Search Console (once) and use URL Inspection on important pages.
 
+## Install as an app
+
+The site can be installed on phones (`public/manifest.webmanifest`, icons in `public/icons/`). `public/sw.js` keeps photos and built files quick and shows the last-seen pages when offline; pages are always fetched fresh first, so a new deploy shows straight away. Android visitors get an "Install the app" card and menu button; iPhone visitors get the Share, then Add to Home Screen steps (`src/components/InstallPrompt.vue`). If you change `sw.js` caching, bump `CACHE` in it.
+
 ## Where to edit content
 
 | What | File |

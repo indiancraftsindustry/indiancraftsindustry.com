@@ -8,6 +8,7 @@ import { nav, site } from '../data/site'
 import { categoryName, products } from '../data/catalog'
 import { artefactCollections, mainCollections } from '../data/collections'
 import { bag } from '../lib/bag'
+import { install, promptInstall } from '../lib/install'
 import { priceLabel } from '../lib/format'
 import { onScrollFrame } from '../lib/motion'
 
@@ -16,6 +17,13 @@ const router = useRouter()
 
 const scrolled = ref(false)
 const menuOpen = ref(false)
+
+// Install from the menu: Android shows the browser prompt; iPhone gets the Add to Home Screen card
+async function openInstall() {
+  menuOpen.value = false
+  if (install.available) await promptInstall()
+  else install.open = true
+}
 const searchOpen = ref(false)
 const query = ref('')
 const searchInput = ref<HTMLInputElement | null>(null)
@@ -255,6 +263,13 @@ function isActive(to: string) {
             <AppIcon name="phone" :size="18" /> Call us
           </a>
         </div>
+        <button
+          v-if="!install.installed && (install.available || install.ios)"
+          class="mb-8 flex min-h-12 w-full items-center justify-center gap-2 rounded-[3px] border border-zari-light/50 font-medium text-zari-light"
+          @click="openInstall"
+        >
+          <AppIcon name="install" :size="18" /> Install the app on this phone
+        </button>
         <p>Aerocity, Noida, Greater Noida, Vrindavan and Goa</p>
         <a :href="site.instagram" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-2 text-zari-light">
           <AppIcon name="instagram" :size="18" /> {{ site.instagramHandle }}
