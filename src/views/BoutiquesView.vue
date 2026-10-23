@@ -4,7 +4,6 @@ import AppIcon from '../components/AppIcon.vue'
 import UiButton from '../components/UiButton.vue'
 import RevealText from '../components/RevealText.vue'
 import BoutiqueList from '../components/BoutiqueList.vue'
-import { media } from '../data/catalog'
 import { site, whatsappLink } from '../data/site'
 </script>
 
@@ -12,7 +11,7 @@ import { site, whatsappLink } from '../data/site'
   <div>
     <section class="relative isolate overflow-hidden bg-peacock text-marble">
       <div class="absolute inset-0 -z-10 opacity-30" aria-hidden="true">
-        <AppImage :src="media.ringDisplay" eager :width="1800" class="size-full object-cover" />
+        <AppImage src="images/boutique/gallery-entrance.jpg" eager :width="1400" class="size-full object-cover" />
       </div>
       <div class="shell py-16 sm:py-24 lg:py-36">
         <RevealText as="h1" text="Our boutiques" class="max-w-[16ch] font-display text-[clamp(44px,6vw,88px)] leading-[1.02] tracking-[-0.02em]" />
@@ -45,7 +44,7 @@ import { site, whatsappLink } from '../data/site'
     <section class="bg-marble-deep">
       <div class="shell grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-2 lg:gap-20 lg:py-28">
         <div v-reveal="{ type: 'mask' }" class="aspect-[16/11] overflow-hidden bg-stone">
-          <AppImage :src="media.hotelSuite" alt="Hotel suite interior" :width="1200" sizes="(max-width: 1024px) 90vw, 45vw" class="size-full object-cover" />
+          <AppImage src="images/boutique/gallery-room.jpg" alt="Paintings, brass idols, jewellery and textiles on display in our gallery" :width="1200" sizes="(max-width: 1024px) 90vw, 45vw" class="size-full object-cover" />
         </div>
         <div>
           <RevealText text="Staying at one of these hotels?" class="font-display text-[clamp(30px,3.4vw,46px)] leading-tight" />

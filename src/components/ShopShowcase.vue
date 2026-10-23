@@ -1,16 +1,18 @@
 <script setup lang="ts">
 // Every piece from the client's own photos in one place, high on the home page:
-// paintings and jewellery mixed so the wall feels like walking into a boutique.
+// paintings, jewellery and statues mixed so it feels like walking into a boutique.
 import { computed, ref } from 'vue'
 import ProductGrid from './ProductGrid.vue'
 import RevealText from './RevealText.vue'
 import { products } from '../data/catalog'
+import { JEWELLERY_CATEGORIES } from '../data/collections'
 import { isClientPiece } from '../lib/seo'
 
 const paintings = products.filter((p) => p.category === 'exclusive')
-const jewellery = products.filter((p) => p.category !== 'exclusive' && isClientPiece(p))
-// painting, jewel, painting, jewel… then whatever is left
-const mixed = Array.from({ length: Math.max(paintings.length, jewellery.length) }, (_, i) => [paintings[i], jewellery[i]])
+const jewellery = products.filter((p) => JEWELLERY_CATEGORIES.includes(p.category) && isClientPiece(p))
+const statues = products.filter((p) => p.category === 'statues')
+// painting, jewel, statue, painting, jewel… then whatever is left
+const mixed = Array.from({ length: Math.max(paintings.length, jewellery.length, statues.length) }, (_, i) => [paintings[i], jewellery[i], statues[i]])
   .flat()
   .filter((p) => p !== undefined)
 
@@ -18,6 +20,7 @@ const filters = [
   { key: 'all', label: 'All', items: mixed },
   { key: 'paintings', label: 'Paintings', items: paintings },
   { key: 'jewellery', label: 'Jewellery', items: jewellery },
+  { key: 'statues', label: 'Statues', items: statues },
 ] as const
 const active = ref<(typeof filters)[number]['key']>('all')
 const items = computed(() => filters.find((f) => f.key === active.value)!.items)
@@ -30,8 +33,8 @@ const items = computed(() => filters.find((f) => f.key === active.value)!.items)
         <div>
           <RevealText id="showcase-title" text="In our boutiques now" class="font-display text-[clamp(32px,3.8vw,52px)] leading-tight" />
           <p class="mt-3 max-w-[54ch] text-lg text-ink-soft">
-            Original paintings and jewellery you can see in person. Tap a piece for details, or save the ones you like and ask about
-            them together on WhatsApp.
+            Original paintings, jewellery and statues you can see in person. Tap a piece for details, or save the ones you like and
+            ask about them together on WhatsApp.
           </p>
         </div>
         <div class="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] lg:mx-0 lg:px-0" role="group" aria-label="Show">
@@ -47,7 +50,7 @@ const items = computed(() => filters.find((f) => f.key === active.value)!.items)
           </button>
         </div>
       </div>
-      <ProductGrid :key="active" :items="items" :initial="8" />
+      <ProductGrid :key="active" :items="items" :initial="8" hide-price />
     </div>
   </section>
 </template>

@@ -3,7 +3,7 @@ import AppImage from '../components/AppImage.vue'
 import AppIcon from '../components/AppIcon.vue'
 import UiButton from '../components/UiButton.vue'
 import ProductRail from '../components/ProductRail.vue'
-import JharokhaFrame from '../components/JharokhaFrame.vue'
+import HeroSlider from '../components/HeroSlider.vue'
 import ParallaxImage from '../components/ParallaxImage.vue'
 import RevealText from '../components/RevealText.vue'
 import MarqueeBand from '../components/MarqueeBand.vue'
@@ -13,14 +13,12 @@ import InstagramGrid from '../components/InstagramGrid.vue'
 import ArchBrowse from '../components/ArchBrowse.vue'
 import ShopShowcase from '../components/ShopShowcase.vue'
 import NicheImage from '../components/NicheImage.vue'
-import { getProduct, media, signatureIds } from '../data/catalog'
+import { getProduct, signatureIds } from '../data/catalog'
 import { collections } from '../data/collections'
 import { artisans, brand, curation, global, hero, intro, invitation, newGeneration, philosophy, values } from '../data/brand'
 import { site, whatsappLink } from '../data/site'
-import { priceLabel } from '../lib/format'
 import type { Product } from '../types'
 
-const featuredArt = getProduct('radha-in-the-rose-garden')!
 const jewellery = signatureIds
   .map(getProduct)
   .filter((p): p is Product => Boolean(p) && p!.category !== 'exclusive')
@@ -57,12 +55,14 @@ const seekerLinks = ['/collections/art', '/collections/carpets', '/collections/p
 <template>
   <div>
     <!-- ============================== 1. HERO ============================== -->
-    <section class="relative overflow-hidden">
-      <div class="shell grid items-center gap-14 pt-10 pb-20 lg:grid-cols-[1.08fr_1fr] lg:gap-20 lg:pt-14 lg:pb-24">
+    <section class="relative">
+      <HeroSlider />
+
+      <div class="shell grid gap-6 pt-10 pb-12 sm:pt-14 sm:pb-16 lg:grid-cols-[1.15fr_1fr] lg:items-end lg:gap-20 lg:pt-16 lg:pb-20">
         <div>
           <RouterLink
             to="/collections/art"
-            class="mb-7 inline-flex animate-rise items-center gap-2 rounded-full border border-zari/40 bg-marble py-1.5 pr-4 pl-1.5 text-base text-ink-soft transition-colors hover:border-zari hover:text-ink"
+            class="mb-6 inline-flex animate-rise items-center gap-2 rounded-full border border-zari/40 bg-marble py-1.5 pr-4 pl-1.5 text-base text-ink-soft transition-colors hover:border-zari hover:text-ink"
           >
             <span class="rounded-full bg-gallery px-2.5 py-0.5 text-sm font-medium text-zari-light">New</span>
             <span class="sm:hidden">New original paintings</span>
@@ -74,42 +74,17 @@ const seekerLinks = ['/collections/art', '/collections/carpets', '/collections/p
             :text="hero.title"
             :delay="150"
             :stagger="70"
-            class="font-display text-[clamp(34px,5.6vw,80px)] leading-[1.06] tracking-[-0.02em]"
+            class="font-display text-[clamp(34px,5vw,72px)] leading-[1.06] tracking-[-0.02em]"
           />
-          <p class="mt-8 max-w-[44ch] animate-rise font-display text-[clamp(20px,1.8vw,26px)] leading-snug text-ink italic [animation-delay:600ms]">
+        </div>
+        <div>
+          <p class="max-w-[44ch] animate-rise font-display text-[clamp(20px,1.8vw,26px)] leading-snug text-ink italic [animation-delay:500ms]">
             {{ hero.lead }}
           </p>
-          <p class="mt-5 max-w-[56ch] animate-rise text-lg text-ink-soft [animation-delay:720ms] max-sm:hidden">{{ hero.body[0] }}</p>
-          <div class="mt-8 grid animate-rise gap-3 [animation-delay:850ms] sm:mt-10 sm:flex sm:flex-wrap">
+          <p class="mt-4 max-w-[56ch] animate-rise text-lg text-ink-soft [animation-delay:620ms] max-sm:hidden">{{ hero.body[0] }}</p>
+          <div class="mt-8 grid animate-rise gap-3 [animation-delay:750ms] sm:flex sm:flex-wrap">
             <UiButton to="/collections">Explore Our Collections</UiButton>
-            <UiButton to="/heritage" variant="outline">Discover Our Heritage</UiButton>
-          </div>
-          <div class="mt-10 sm:mt-14 hidden animate-rise items-center gap-4 text-base text-ink-muted [animation-delay:1050ms] lg:flex">
-            <span class="relative h-12 w-px overflow-hidden bg-ink/15">
-              <span class="absolute inset-0 animate-scroll-cue bg-zari" />
-            </span>
-            {{ hero.invite }}
-          </div>
-        </div>
-
-        <div class="relative mx-auto w-full max-w-[400px] animate-unveil sm:max-w-[540px]">
-          <JharokhaFrame :src="media.hero" alt="A bride in a pink silk saree wearing temple jewellery" eager sizes="(max-width: 1024px) 90vw, 45vw" />
-          <div class="absolute -bottom-6 left-0 animate-rise [animation-delay:1100ms] sm:-left-8">
-            <div class="animate-float">
-              <RouterLink
-                :to="`/product/${featuredArt.id}`"
-                class="flex items-center gap-4 bg-marble/95 py-3 pr-5 pl-3 shadow-[0_24px_50px_-24px_rgb(15_46_46/0.45)] backdrop-blur transition-transform duration-500 ease-silk hover:scale-[1.03]"
-              >
-                <span class="size-12 shrink-0 overflow-hidden bg-stone sm:size-16">
-                  <AppImage :src="featuredArt.images[0]" :width="200" alt="" class="size-full object-cover" />
-                </span>
-                <span class="leading-tight">
-                  <span class="block text-sm text-zari-deep max-sm:hidden">Original painting, {{ featuredArt.art?.size }}</span>
-                  <span class="block font-display text-lg sm:mt-1 sm:text-xl">{{ featuredArt.name }}</span>
-                  <span class="text-base text-ink-soft">{{ priceLabel(featuredArt) }}</span>
-                </span>
-              </RouterLink>
-            </div>
+            <UiButton to="/boutiques" variant="outline">Visit a boutique</UiButton>
           </div>
         </div>
       </div>
@@ -321,7 +296,7 @@ const seekerLinks = ['/collections/art', '/collections/carpets', '/collections/p
           </div>
           <UiButton v-reveal="150" to="/collections/jewellery" variant="outline">See the jewellery</UiButton>
         </div>
-        <ProductRail :products="jewellery" label="Selected jewellery" />
+        <ProductRail :products="jewellery" label="Selected jewellery" hide-price />
       </div>
     </section>
 

@@ -9,7 +9,7 @@ import ProductGrid from '../components/ProductGrid.vue'
 import RevealText from '../components/RevealText.vue'
 import NotFoundView from './NotFoundView.vue'
 import { careGuides, getCategory, getProduct, relatedProducts } from '../data/catalog'
-import { collectionForCategory } from '../data/collections'
+import { collectionForCategory, JEWELLERY_CATEGORIES } from '../data/collections'
 import { boutiques, mapsLink, whatsappLink } from '../data/site'
 import { discount, formatPrice, priceLabel } from '../lib/format'
 import { inBag, productWhatsappLink, toggleBag, bag } from '../lib/bag'
@@ -32,9 +32,11 @@ const onSwipe = () => {
 const goTo = (i: number) => swiper.value?.scrollTo({ left: i * swiper.value.clientWidth, behavior: 'smooth' })
 const art = computed(() => product.value?.art)
 const collection = computed(() => collectionForCategory(product.value?.category ?? ''))
-const categoryLink = computed(() =>
-  product.value?.category === 'exclusive' ? '/collections/art' : `/collections/jewellery/${product.value?.category}`,
-)
+const categoryLink = computed(() => {
+  const c = product.value?.category ?? ''
+  if (c === 'exclusive') return '/collections/art'
+  return JEWELLERY_CATEGORIES.includes(c) ? `/collections/jewellery/${c}` : collection.value.to
+})
 
 const assurances = computed<{ icon: IconName; text: string }[]>(() => {
   const isArt = Boolean(art.value) || product.value?.category === 'paintings'

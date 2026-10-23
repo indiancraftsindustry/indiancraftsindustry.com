@@ -4,7 +4,6 @@ import ParallaxImage from '../components/ParallaxImage.vue'
 import RevealText from '../components/RevealText.vue'
 import UiButton from '../components/UiButton.vue'
 import { brand, philosophy, story, vision } from '../data/brand'
-import { media } from '../data/catalog'
 import { site } from '../data/site'
 </script>
 
@@ -54,7 +53,7 @@ import { site } from '../data/site'
     <!-- Founder -->
     <section class="shell grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-2 lg:gap-24 lg:py-32">
       <div v-reveal="{ type: 'mask' }">
-        <ParallaxImage :src="media.ringDisplay" alt="Pieces presented in one of our boutiques" :width="1100" sizes="(max-width: 1024px) 90vw, 45vw" class="aspect-[5/4]" />
+        <ParallaxImage src="images/boutique/gallery-logo-wall.jpg" alt="The Indian Crafts Industry logo wall with Ganesha, paintings and Pashmina" :width="1100" sizes="(max-width: 1024px) 90vw, 45vw" class="aspect-[5/4]" />
       </div>
       <div>
         <p v-reveal class="text-base text-zari-deep">The founder</p>

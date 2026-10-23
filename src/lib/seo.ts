@@ -3,7 +3,7 @@
 // into each page's HTML; in the browser, applyHead() refreshes it on every navigation.
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import { boutiques, site } from '../data/site'
-import { collections, getCollection, JEWELLERY_CATEGORIES } from '../data/collections'
+import { collectionForCategory, collections, getCollection, JEWELLERY_CATEGORIES } from '../data/collections'
 import { getCategory, getProduct, products } from '../data/catalog'
 import { formatPrice } from './format'
 import { imgUrl } from './img'
@@ -255,6 +255,7 @@ const STATIC: Record<string, Omit<Page, 'path'>> = {
   boutiques: {
     title: title('Our Boutiques'),
     description: 'Visit our boutiques inside hotels in New Delhi Aerocity, Noida, Greater Noida, Vrindavan and Goa. Open every day, 10 am to 10 pm.',
+    image: 'images/boutique/gallery-entrance.jpg',
     crumbs: [HOME, ['Boutiques', '/boutiques']],
     jsonLd: boutiques.map(store),
   },
@@ -318,6 +319,7 @@ export function seoFor(route: RouteLocationNormalizedLoaded): Head {
       imageAlt: c.name,
       pageType: 'CollectionPage',
       crumbs: [HOME, COLLECTIONS, [c.name, c.to]],
+      jsonLd: c.productCategories ? [itemList(products.filter((p) => c.productCategories!.includes(p.category)))] : [],
     })
   }
 
@@ -326,10 +328,10 @@ export function seoFor(route: RouteLocationNormalizedLoaded): Head {
     if (!p) return notFound(path)
     const url = pageUrl(path)
     const isArt = p.category === 'exclusive'
-    const parent = getCollection(isArt ? 'art' : 'jewellery')!
+    const parent = isArt ? getCollection('art')! : collectionForCategory(p.category)
     const crumbs: [string, string][] = [HOME, COLLECTIONS, [parent.short, parent.to]]
     const cat = getCategory(p.category)
-    if (!isArt && cat) crumbs.push([cat.name, `/collections/jewellery/${cat.slug}`])
+    if (cat && JEWELLERY_CATEGORIES.includes(cat.slug)) crumbs.push([cat.name, `/collections/jewellery/${cat.slug}`])
     crumbs.push([p.name, productPath(p)])
     const description = isArt
       ? `${p.short} Original ${(p.art?.kind ?? 'painting').toLowerCase()}${p.art?.size ? `, ${p.art.size}` : ''}, only one exists. ${priceText(p)}.`

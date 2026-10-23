@@ -139,7 +139,8 @@ export const collections: Collection[] = [
       'Decorative Bowls, Vessels & Ornamental Pieces',
       'Exclusive Collectibles & Cultural Gifts',
     ],
-    images: ['images/collections/krishna-with-cow-statue.jpg', 'images/collections/standing-ganesha-statue.jpg'],
+    images: ['images/collections/krishna-om-statue.jpg', 'images/collections/krishna-with-cow-statue.jpg', 'images/collections/standing-ganesha-statue.jpg'],
+    productCategories: ['statues'],
     to: '/collections/metal-artefacts',
   },
   {

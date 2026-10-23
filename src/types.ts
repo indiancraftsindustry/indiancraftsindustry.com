@@ -1,4 +1,4 @@
-export type CareGuide = 'silver' | 'gold' | 'gemstone' | 'diamond' | 'painting'
+export type CareGuide = 'silver' | 'gold' | 'gemstone' | 'diamond' | 'painting' | 'artefact'
 
 export interface Category {
   slug: string

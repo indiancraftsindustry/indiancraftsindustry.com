@@ -10,7 +10,6 @@ import { getProduct } from '../data/catalog'
 import { exclusiveProducts, galleryHighlights } from '../data/exclusive'
 import { whatsappLink } from '../data/site'
 import { onScrollFrame, prefersReducedMotion } from '../lib/motion'
-import { priceLabel } from '../lib/format'
 import type { Product } from '../types'
 
 const items = galleryHighlights.map(getProduct).filter((p): p is Product => Boolean(p))
@@ -101,7 +100,7 @@ onBeforeUnmount(() => {
           :key="p.id"
           :to="`/product/${p.id}`"
           class="group relative shrink-0 snap-center"
-          :aria-label="`${p.name}, ${priceLabel(p)}`"
+          :aria-label="p.name"
         >
           <!-- spotlight -->
           <span
@@ -120,7 +119,6 @@ onBeforeUnmount(() => {
             <span class="mt-1 block text-base text-marble/65">
               {{ p.art?.theme }}<template v-if="p.art?.size">, {{ p.art.size }}</template>
             </span>
-            <span class="mt-1 block text-base text-zari-light">{{ priceLabel(p) }}</span>
           </span>
         </RouterLink>
 

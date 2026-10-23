@@ -56,6 +56,7 @@ export function bagWhatsappLink() {
 }
 
 export function productWhatsappLink(p: Product) {
-  if (!p.price) return whatsappLink(`Namaste! I'm interested in the original painting "${p.name}". Could you share the price and size?`)
+  if (p.art) return whatsappLink(`Namaste! I'm interested in the original painting "${p.name}". Could you share the price and size?`)
+  if (!p.price) return whatsappLink(`Namaste! I'm interested in the ${p.name}. Could you share the price and details?`)
   return whatsappLink(`Namaste! I'm interested in the ${p.name} (${priceLabel(p)}). Is it available?`)
 }

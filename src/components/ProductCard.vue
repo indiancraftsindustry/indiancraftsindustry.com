@@ -11,7 +11,8 @@ import { inBag, toggleBag } from '../lib/bag'
 import { NICHE_ARCH, NICHE_CLIP } from '../lib/arch'
 import type { Product } from '../types'
 
-const props = defineProps<{ product: Product }>()
+// hidePrice: the home page shows pieces without the price line
+const props = defineProps<{ product: Product; hidePrice?: boolean }>()
 
 const off = computed(() => discount(props.product.price, props.product.mrp))
 const saved = computed(() => inBag(props.product.id))
@@ -98,7 +99,7 @@ const kind = computed(() => {
       <h3 class="mt-1 line-clamp-2 font-display text-[clamp(19px,1.6vw,22px)] leading-snug text-balance">
         <RouterLink :to="link" class="after:absolute after:inset-0 after:content-[''] hover:text-peacock-3">{{ product.name }}</RouterLink>
       </h3>
-      <p class="mt-1.5 flex flex-wrap items-baseline justify-center gap-x-2.5 text-base font-normal">
+      <p v-if="!hidePrice" class="mt-1.5 flex flex-wrap items-baseline justify-center gap-x-2.5 text-base font-normal">
         <span :class="!product.price && 'text-peacock-3'">{{ priceLabel(product) }}</span>
         <template v-if="off">
           <s class="text-sm text-ink-muted">{{ formatPrice(product.mrp!) }}</s>

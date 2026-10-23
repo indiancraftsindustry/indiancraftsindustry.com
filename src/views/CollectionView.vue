@@ -214,8 +214,8 @@ const enquiry = computed(() =>
       </div>
     </section>
 
-    <!-- Personal enquiry (collections not listed online yet) -->
-    <section v-if="!collection.productCategories" class="bg-gallery py-16 sm:py-24 text-marble lg:py-32">
+    <!-- Personal enquiry: a few pieces are listed online; ask for the full current selection -->
+    <section v-if="!isJewellery" class="bg-gallery py-16 sm:py-24 text-marble lg:py-32">
       <div class="shell grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-24">
         <div>
           <p v-reveal class="text-base text-zari-light">Personal assistance</p>

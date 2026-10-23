@@ -4,7 +4,7 @@
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import { boutiques, site } from '../data/site'
 import { brand, intro, story, values } from '../data/brand'
-import { collections } from '../data/collections'
+import { collections, JEWELLERY_CATEGORIES } from '../data/collections'
 import { getCategory, products } from '../data/catalog'
 import { formatPrice } from './format'
 import { isClientPiece, pageUrl, seoFor } from './seo'
@@ -28,7 +28,8 @@ const head = (name: string, path: string) =>
 const pageTitle = (t: string) => t.split(' | ')[0]
 const price = (p: Product) => (p.price ? formatPrice(p.price) : 'price on request')
 const paintings = () => products.filter((p) => p.category === 'exclusive')
-const jewellery = () => products.filter((p) => p.category !== 'exclusive' && isClientPiece(p))
+const jewellery = () => products.filter((p) => JEWELLERY_CATEGORIES.includes(p.category) && isClientPiece(p))
+const statues = () => products.filter((p) => p.category === 'statues')
 const productLine = (p: Product) =>
   `- [${p.name}](${pageUrl(`/product/${p.id}`)}): ${p.short}${p.art?.size ? ` ${p.art.size}.` : ''} ${price(p)[0].toUpperCase()}${price(p).slice(1)}.`
 
@@ -64,6 +65,10 @@ export function llmsTxt() {
     '## Jewellery',
     '',
     ...jewellery().map(productLine),
+    '',
+    '## Statues and idols',
+    '',
+    ...statues().map(productLine),
     '',
     '## Optional',
     '',
@@ -140,6 +145,9 @@ export function llmsFullTxt() {
     '## Jewellery',
     '',
     ...jewellery().flatMap(productBlock),
+    '## Statues and idols',
+    '',
+    ...statues().flatMap(productBlock),
   ]
   return `${lines.join('\n').replace(/\n{3,}/g, '\n\n').trim()}\n`
 }

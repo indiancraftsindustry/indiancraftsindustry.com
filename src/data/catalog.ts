@@ -8,6 +8,7 @@
 import type { CareGuide, Category, Gemstone, Product } from '../types'
 import { exclusiveProducts } from './exclusive'
 import { clientJewellery } from './jewellery'
+import { clientArtefacts } from './artefacts'
 
 // Editorial imagery used across the site
 export const media = {
@@ -71,6 +72,12 @@ export const categories: Category[] = [
     cover: 'images/jewellery/two-tone-link-bracelet.jpg',
   },
   {
+    slug: 'statues',
+    name: 'Statues & idols',
+    blurb: 'Krishna, Ganesha and other figures for a pooja room, an entrance or a quiet corner.',
+    cover: 'images/collections/krishna-om-statue.jpg',
+  },
+  {
     slug: 'bridal',
     name: 'Bridal & temple jewellery',
     blurb: 'Traditional temple-style sets for brides, weddings and festivals.',
@@ -102,6 +109,12 @@ export const careGuides: Record<CareGuide, string[]> = {
     'Soak in warm soapy water and brush gently with a soft toothbrush.',
     'Let us check the setting once a year so the stones stay secure.',
     'Keep any certificate that comes with your piece in a safe place.',
+  ],
+  artefact: [
+    'Dust it with a soft, dry cloth or brush.',
+    'Keep it away from water and damp walls, and dry it at once if it gets wet.',
+    'Do not use metal polish or chemicals on inlaid or painted parts.',
+    'Ask us about professional cleaning if it needs a deeper shine.',
   ],
   painting: [
     'Hang it away from direct sunlight and damp walls.',
@@ -569,7 +582,7 @@ const baseProducts: Product[] = [
 
 // Exclusive originals come first so they lead every "all products" listing
 // The client's own pieces come first in every jewellery category
-export const products: Product[] = [...exclusiveProducts, ...clientJewellery, ...baseProducts]
+export const products: Product[] = [...exclusiveProducts, ...clientJewellery, ...clientArtefacts, ...baseProducts]
 
 // The nine gemstones of Indian astrology (Navratna) and what people wear them for.
 export const navratna: Gemstone[] = [

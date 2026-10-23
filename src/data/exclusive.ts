@@ -2,8 +2,8 @@
 // The Exclusive Collection: the client's own original paintings.
 // Photos live in /public/images/exclusive (a 1400px and an 800px version of
 // each, plus "-room" photos where the client supplied a wall mock-up).
-// Only the two tiger paintings have published prices; the rest are
-// "Price on request". Sizes are filled in where the client's photos state them.
+// Every painting is "Price on request" (the client asked not to show painting
+// prices). Sizes are filled in where the client's photos state them.
 // ---------------------------------------------------------------------------
 import type { Product } from '../types'
 
@@ -40,7 +40,6 @@ export const exclusiveProducts: Product[] = [
     id: 'tiger-family',
     name: 'Big Cats Calling: Tiger Family',
     category: 'exclusive',
-    price: 560000,
     tag: 'Big Cats series',
     care: 'painting',
     images: [img('tiger-family'), img('tiger-family-room')],
@@ -152,7 +151,6 @@ export const exclusiveProducts: Product[] = [
     id: 'tiger-in-the-bamboo',
     name: 'Big Cats Calling: Eyes in the Bamboo',
     category: 'exclusive',
-    price: 555000,
     tag: 'Big Cats series',
     care: 'painting',
     images: [img('tiger-in-the-bamboo'), img('tiger-in-the-bamboo-room')],

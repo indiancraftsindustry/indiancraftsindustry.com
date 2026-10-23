@@ -12,7 +12,7 @@ const items = [
   { label: 'Bracelets', to: '/collections/jewellery/bracelets', image: 'images/jewellery/two-tone-link-bracelet.jpg' },
   { label: 'Silver', to: '/collections/jewellery/silver', image: 'images/jewellery/oxidised-sunflower-set.jpg' },
   { label: 'Pashmina', to: '/collections/pashmina', image: 'images/collections/cashmere-stole.jpg' },
-  { label: 'Artefacts', to: '/collections/metal-artefacts', image: 'images/collections/krishna-with-cow-statue.jpg' },
+  { label: 'Artefacts', to: '/collections/metal-artefacts', image: 'images/collections/krishna-om-statue.jpg' },
 ]
 </script>
 
