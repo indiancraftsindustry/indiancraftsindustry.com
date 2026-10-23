@@ -44,15 +44,12 @@ export const footerLinks = [
   { label: 'International Enquiries', to: '/customer-care#international' },
 ]
 
-// Boutique locations as listed on the client's Instagram profile, plus Hilton Goa Resort (address from the client).
+// Current boutiques, in the order of the client's "Our present presence" (October 2026).
 export const boutiques: Boutique[] = [
   { city: 'New Delhi', name: 'Pullman & Novotel New Delhi Aerocity', note: 'Hotel shopping arcade, Hospitality District, Aerocity', locality: 'New Delhi', region: 'Delhi' },
   { city: 'New Delhi', name: 'Aloft New Delhi Aerocity', note: 'Hospitality District, Aerocity', locality: 'New Delhi', region: 'Delhi' },
-  { city: 'Delhi NCR', name: 'DoubleTree by Hilton', note: 'Hotel boutique, Delhi NCR' },
-  { city: 'Noida', name: 'Radisson Noida', note: 'Hotel boutique, Noida', locality: 'Noida', region: 'Uttar Pradesh' },
+  { city: 'Noida', name: 'Radisson Noida', note: 'Sector 55, Noida', address: 'Sector 55, Noida', street: 'Sector 55', locality: 'Noida', region: 'Uttar Pradesh' },
   { city: 'Greater Noida', name: 'Radisson Blu Greater Noida', note: 'Hotel boutique, Greater Noida', locality: 'Greater Noida', region: 'Uttar Pradesh' },
-  { city: 'Vrindavan', name: 'Nidhivan Sarovar Portico', note: 'Hotel boutique, Vrindavan', locality: 'Vrindavan', region: 'Uttar Pradesh' },
-  { city: 'Vrindavan', name: 'Nidhivan Palace', note: 'Hotel boutique, Vrindavan', locality: 'Vrindavan', region: 'Uttar Pradesh' },
   {
     city: 'Goa',
     name: 'Hilton Goa Resort',
@@ -63,6 +60,17 @@ export const boutiques: Boutique[] = [
     region: 'Goa',
     postalCode: '403515',
   },
+  { city: 'Vrindavan', name: 'Nidhivan Sarovar Portico', note: 'Hotel boutique, Vrindavan', locality: 'Vrindavan', region: 'Uttar Pradesh' },
+  { city: 'Vrindavan', name: 'Indian Palace', note: 'Hotel boutique, Vrindavan', locality: 'Vrindavan', region: 'Uttar Pradesh' },
+]
+
+// Hotels where the client had boutiques before ("Our journey through distinguished hotels")
+export const pastBoutiques: { name: string; place: string }[] = [
+  { name: 'Crowne Plaza Today', place: 'Gurugram' },
+  { name: 'DoubleTree by Hilton', place: 'Sector 56, Golf Course Road, Gurugram' },
+  { name: 'Le Méridien', place: 'Central Park, Gurugram' },
+  { name: 'Courtyard by Marriott', place: 'Downtown Gurugram' },
+  { name: 'Grand Mercure', place: 'Candolim, Goa' },
 ]
 
 export const mapsLink = (b: Boutique) =>

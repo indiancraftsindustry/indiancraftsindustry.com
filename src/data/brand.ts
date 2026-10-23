@@ -233,3 +233,32 @@ export const punchlines = {
   newGeneration: ['Heritage Is Our Beginning, Not Our Boundary.', 'Tradition That Lives. Craft That Evolves.', 'Yesterday’s Wisdom. Tomorrow’s Heirlooms.', 'Keep the Craft Alive. Let the Story Continue.'],
   gifting: ['Give Something Beautiful. Give Something Meaningful.', 'Some Gifts Become Family Stories.', 'Chosen with Love. Kept with Meaning.', 'From Our Heritage to Your Home.'],
 }
+
+// Boutiques page: "A legacy of craftsmanship" (client copy, October 2026)
+export const presence = {
+  title: 'A Legacy of Craftsmanship. A Presence Built on Trust.',
+  subtitle: 'More Than Two Decades of Bringing Indian Heritage to the World.',
+  lead: 'From the timeless traditions of Indian artisans to the distinguished hospitality of leading hotels, INDIAN CRAFTS INDUSTRY represents a journey of culture, craftsmanship, and enduring relationships.',
+  body: [
+    'For over two decades, we have been dedicated to presenting the richness of Indian art, heritage, and artisanal excellence through thoughtfully curated collections of fine jewellery, Pashmina and cashmere, Oriental carpets, traditional paintings, and exquisite handcrafted creations.',
+    'Our journey has taken us into the distinguished environments of renowned hotels and hospitality destinations, where we have had the privilege of introducing Indian craftsmanship to discerning Indian and international guests.',
+    'Every location represents more than a retail presence. It reflects our dedication to authenticity, our understanding of refined hospitality, and our belief that traditional craftsmanship deserves a place in the world’s most distinguished settings.',
+    'From contemporary luxury to timeless cultural elegance, our story continues to evolve while remaining rooted in the artistic soul of India.',
+  ],
+  belief: 'Our heritage is Indian. Our outlook is global. Our commitment is to craftsmanship, quality, and trust.',
+  current: {
+    title: 'Our Present Presence',
+    tagline: 'Where Indian heritage meets international hospitality.',
+    intro: 'Our current retail presence spans distinguished hospitality destinations across Delhi NCR, Goa, and Vrindavan.',
+  },
+  past: {
+    title: 'Our Journey Through Distinguished Hotels',
+    tagline: 'Honouring the places that have been part of our story.',
+    intro: 'Our past retail locations include:',
+  },
+  closing: {
+    title: 'Crafted in India. Appreciated by the World.',
+    body: 'At INDIAN CRAFTS INDUSTRY, we see every handcrafted creation as a bridge between generations, cultures, and people. Our purpose is to preserve the spirit of Indian artistry while presenting it with the sophistication, authenticity, and relevance that today’s discerning customers appreciate.',
+    invite: 'Discover our collections. Experience India’s artistic heritage. Take home a story that lasts for generations.',
+  },
+}

@@ -2,7 +2,7 @@
 // can read without running the site's JavaScript (format: https://llmstxt.org).
 // Both are written at build time from the same data the pages use, so they stay current.
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
-import { boutiques, site } from '../data/site'
+import { boutiques, pastBoutiques, site } from '../data/site'
 import { brand, intro, story, values } from '../data/brand'
 import { collections, JEWELLERY_CATEGORIES } from '../data/collections'
 import { getCategory, products } from '../data/catalog'
@@ -32,7 +32,7 @@ const productLine = (p: Product) =>
   `- [${p.name}](${pageUrl(`/product/${p.id}`)}): ${p.short}${p.art?.size ? ` ${p.art.size}.` : ''}`
 
 const summary =
-  'Curator of Indian heritage: gemstone and silver jewellery, Pashmina and cashmere, Oriental carpets, over 4,500 original paintings (each one of a kind), textiles, gifts and heritage artefacts. Boutiques inside hotels in New Delhi (Aerocity), Noida, Greater Noida, Vrindavan and Goa. Founded by ' +
+  'Curator of Indian heritage: gemstone and silver jewellery, Pashmina and cashmere, Oriental carpets, over 4,500 original paintings (each one of a kind), textiles, gifts and heritage artefacts. For over two decades its boutiques have been inside leading hotels; today in New Delhi (Aerocity), Noida, Greater Noida, Goa and Vrindavan. Founded by ' +
   `${site.founder}.`
 
 const contact = `Call or WhatsApp ${site.phoneDisplay}, email ${site.email}, Instagram ${site.instagramHandle} (${site.instagram}). Boutiques are ${site.hours.toLowerCase()}.`
@@ -121,6 +121,8 @@ export function llmsFullTxt() {
     '## Boutiques',
     '',
     ...boutiques.map((b) => `- ${b.name}, ${b.address ?? b.city}. ${site.hours}.`),
+    '',
+    `Past boutiques: ${pastBoutiques.map((h) => `${h.name}, ${h.place}`).join('; ')}.`,
     '',
     '## Collections',
     '',

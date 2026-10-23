@@ -252,7 +252,7 @@ const STATIC: Record<string, Omit<Page, 'path'>> = {
   },
   boutiques: {
     title: title('Our Boutiques'),
-    description: 'Visit our boutiques inside hotels in New Delhi Aerocity, Noida, Greater Noida, Vrindavan and Goa. Open every day, 10 am to 10 pm.',
+    description: 'For over two decades we have brought Indian craftsmanship to leading hotels. Visit our boutiques in New Delhi Aerocity, Noida, Greater Noida, Goa and Vrindavan.',
     image: 'images/boutique/gallery-entrance.jpg',
     crumbs: [HOME, ['Boutiques', '/boutiques']],
     jsonLd: boutiques.map(store),
