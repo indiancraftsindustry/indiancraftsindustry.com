@@ -4,8 +4,7 @@ import { useRoute } from 'vue-router'
 import AppIcon from './AppIcon.vue'
 import AppImage from './AppImage.vue'
 import UiButton from './UiButton.vue'
-import { bag, bagHasPriceOnRequest, bagItems, bagTotal, bagWhatsappLink, toggleBag } from '../lib/bag'
-import { formatPrice, priceLabel } from '../lib/format'
+import { bag, bagItems, bagWhatsappLink, toggleBag } from '../lib/bag'
 import { categoryName } from '../data/catalog'
 
 const route = useRoute()
@@ -40,7 +39,6 @@ watch(() => bag.open, (open) => document.documentElement.classList.toggle('overf
             <div>
               <p class="text-sm text-zari-deep">{{ categoryName(p.category) }}</p>
               <RouterLink :to="`/product/${p.id}`" class="font-display text-lg leading-tight hover:text-peacock-3">{{ p.name }}</RouterLink>
-              <p class="mt-1 text-base">{{ priceLabel(p) }}</p>
             </div>
             <button class="grid size-10 place-items-center self-start rounded-full text-ink-muted hover:text-ruby" :aria-label="`Remove ${p.name}`" @click="toggleBag(p.id)">
               <AppIcon name="close" :size="16" />
@@ -55,12 +53,9 @@ watch(() => bag.open, (open) => document.documentElement.classList.toggle('overf
         </div>
 
         <footer v-if="bagItems.length" class="border-t border-ink/10 bg-marble-deep px-7 pt-5 pb-7">
-          <div class="flex items-baseline justify-between">
-            <span class="text-ink-soft">Estimated total</span>
-            <strong class="font-display text-3xl font-normal">{{ formatPrice(bagTotal) }}</strong>
-          </div>
-          <p v-if="bagHasPriceOnRequest" class="text-right text-sm text-peacock-3">plus original paintings, price on request</p>
-          <p class="mt-2 mb-5 text-sm text-ink-muted">Our team will confirm availability, final price and delivery or boutique pickup on WhatsApp.</p>
+          <p class="mb-5 text-base text-ink-soft">
+            Send your saved pieces in one message. We will reply with details, availability and delivery or boutique pickup.
+          </p>
           <UiButton :href="bagWhatsappLink()" external variant="whatsapp" block>
             <AppIcon name="whatsapp" /> Send enquiry on WhatsApp
           </UiButton>

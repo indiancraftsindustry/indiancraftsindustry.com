@@ -3,7 +3,6 @@
 import { computed, reactive, watch } from 'vue'
 import { getProduct } from '../data/catalog'
 import { whatsappLink } from '../data/site'
-import { priceLabel } from './format'
 import type { Product } from '../types'
 
 const KEY = 'ici-enquiry-bag'
@@ -32,8 +31,6 @@ watch(
 )
 
 export const bagItems = computed(() => bag.ids.map(getProduct).filter((p): p is Product => Boolean(p)))
-export const bagTotal = computed(() => bagItems.value.reduce((sum, p) => sum + (p.price ?? 0), 0))
-export const bagHasPriceOnRequest = computed(() => bagItems.value.some((p) => !p.price))
 
 export const inBag = (id: string) => bag.ids.includes(id)
 
@@ -49,7 +46,7 @@ export function addToBag(id: string) {
 }
 
 export function bagWhatsappLink() {
-  const lines = bagItems.value.map((p, i) => `${i + 1}. ${p.name} (${priceLabel(p)})`)
+  const lines = bagItems.value.map((p, i) => `${i + 1}. ${p.name}`)
   return whatsappLink(
     `Namaste! I would like to ask about these pieces from Indian Crafts Industry:\n\n${lines.join('\n')}\n\nPlease share availability and the nearest boutique.`,
   )
@@ -57,6 +54,5 @@ export function bagWhatsappLink() {
 
 export function productWhatsappLink(p: Product) {
   if (p.art) return whatsappLink(`Namaste! I'm interested in the original painting "${p.name}". Could you share the price and size?`)
-  if (!p.price) return whatsappLink(`Namaste! I'm interested in the ${p.name}. Could you share the price and details?`)
-  return whatsappLink(`Namaste! I'm interested in the ${p.name} (${priceLabel(p)}). Is it available?`)
+  return whatsappLink(`Namaste! I'm interested in the ${p.name}. Could you share the price and details?`)
 }

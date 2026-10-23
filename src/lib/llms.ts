@@ -6,7 +6,6 @@ import { boutiques, site } from '../data/site'
 import { brand, intro, story, values } from '../data/brand'
 import { collections, JEWELLERY_CATEGORIES } from '../data/collections'
 import { getCategory, products } from '../data/catalog'
-import { formatPrice } from './format'
 import { isClientPiece, pageUrl, seoFor } from './seo'
 import type { Product } from '../types'
 
@@ -26,12 +25,11 @@ const head = (name: string, path: string) =>
   seoFor({ name, path, params: {}, query: {}, hash: '', matched: [], meta: {}, fullPath: path } as unknown as RouteLocationNormalizedLoaded)
 
 const pageTitle = (t: string) => t.split(' | ')[0]
-const price = (p: Product) => (p.price ? formatPrice(p.price) : 'price on request')
 const paintings = () => products.filter((p) => p.category === 'exclusive')
 const jewellery = () => products.filter((p) => JEWELLERY_CATEGORIES.includes(p.category) && isClientPiece(p))
 const statues = () => products.filter((p) => p.category === 'statues')
 const productLine = (p: Product) =>
-  `- [${p.name}](${pageUrl(`/product/${p.id}`)}): ${p.short}${p.art?.size ? ` ${p.art.size}.` : ''} ${price(p)[0].toUpperCase()}${price(p).slice(1)}.`
+  `- [${p.name}](${pageUrl(`/product/${p.id}`)}): ${p.short}${p.art?.size ? ` ${p.art.size}.` : ''}`
 
 const summary =
   'Curator of Indian heritage: gemstone and silver jewellery, Pashmina and cashmere, Oriental carpets, over 4,500 original paintings (each one of a kind), textiles, gifts and heritage artefacts. Boutiques inside hotels in New Delhi (Aerocity), Noida, Greater Noida, Vrindavan and Goa. Founded by ' +
@@ -45,7 +43,7 @@ export function llmsTxt() {
     '',
     `> ${summary}`,
     '',
-    `Buying is personal: pieces are seen in a boutique, on a video call or on WhatsApp, and details are confirmed in writing before purchase. Most original pieces are price on request. ${contact}`,
+    `Buying is personal: pieces are seen in a boutique, on a video call or on WhatsApp, and details, including prices, are shared personally and confirmed in writing before purchase. ${contact}`,
     '',
     '## Main pages',
     '',
@@ -86,7 +84,7 @@ function productBlock(p: Product) {
     '',
     `${pageUrl(`/product/${p.id}`)}`,
     '',
-    `${cat ? `${cat}. ` : ''}Price: ${price(p)}.${p.art?.size ? ` Size: ${p.art.size}.` : ''}`,
+    `${cat ? `${cat}.` : ''}${p.art?.size ? ` Size: ${p.art.size}.` : ''}`,
     '',
     ...p.description.flatMap((d) => [d, '']),
     ...specs,

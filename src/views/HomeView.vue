@@ -296,7 +296,7 @@ const seekerLinks = ['/collections/art', '/collections/carpets', '/collections/p
           </div>
           <UiButton v-reveal="150" to="/collections/jewellery" variant="outline">See the jewellery</UiButton>
         </div>
-        <ProductRail :products="jewellery" label="Selected jewellery" hide-price />
+        <ProductRail :products="jewellery" label="Selected jewellery" />
       </div>
     </section>
 

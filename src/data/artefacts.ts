@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
 // Statues and idols from the client's own photos (public/images/collections,
-// name.jpg plus name-800.jpg). Prices are on request, and the metal, size and
+// name.jpg plus name-800.jpg). Prices are never shown, and the metal, size and
 // weight are only stated once the client confirms them.
 // ---------------------------------------------------------------------------
 import type { Product } from '../types'

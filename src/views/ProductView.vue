@@ -11,14 +11,12 @@ import NotFoundView from './NotFoundView.vue'
 import { careGuides, getCategory, getProduct, relatedProducts } from '../data/catalog'
 import { collectionForCategory, JEWELLERY_CATEGORIES } from '../data/collections'
 import { boutiques, mapsLink, whatsappLink } from '../data/site'
-import { discount, formatPrice, priceLabel } from '../lib/format'
 import { inBag, productWhatsappLink, toggleBag, bag } from '../lib/bag'
 
 const route = useRoute()
 const product = computed(() => getProduct(String(route.params.id)))
 const category = computed(() => (product.value ? getCategory(product.value.category) : undefined))
 const related = computed(() => (product.value ? relatedProducts(product.value) : []))
-const off = computed(() => (product.value ? discount(product.value.price, product.value.mrp) : 0))
 const saved = computed(() => (product.value ? inBag(product.value.id) : false))
 const activeImage = ref(0)
 
@@ -190,20 +188,7 @@ function save() {
         <p class="text-base text-zari-deep">{{ category?.name }}</p>
         <h1 class="mt-2 font-display text-[clamp(32px,4.4vw,58px)] leading-[1.08]">{{ product.name }}</h1>
 
-        <p class="mt-6 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-          <span class="font-display text-[34px]">{{ priceLabel(product) }}</span>
-          <template v-if="off">
-            <s class="text-lg text-ink-muted">{{ formatPrice(product.mrp!) }}</s>
-            <span class="rounded-full bg-ruby px-3 py-0.5 text-sm font-medium text-white">{{ off }}% off</span>
-          </template>
-        </p>
-        <p v-if="art && !product.price" class="mt-2 max-w-[48ch] text-base text-ink-soft">
-          Message us for the price, the exact size and a short video of the painting.
-        </p>
-        <p v-else-if="art" class="mt-1 text-sm text-ink-muted">Price plus taxes and delivery. We will confirm everything on WhatsApp.</p>
-        <p v-else class="mt-1 text-sm text-ink-muted">Price includes taxes. We will confirm the final price on WhatsApp or at the boutique.</p>
-
-        <p class="mt-8 text-lg text-ink-soft">{{ product.short }}</p>
+        <p class="mt-6 text-lg text-ink-soft">{{ product.short }}</p>
 
         <ul class="mt-8 grid gap-3 sm:grid-cols-2">
           <li v-for="h in product.highlights" :key="h" class="flex gap-3">
@@ -214,7 +199,7 @@ function save() {
 
         <div v-if="art" class="mt-10 grid gap-3 xl:grid-cols-2">
           <UiButton :href="productWhatsappLink(product)" external variant="whatsapp">
-            <AppIcon name="whatsapp" /> {{ product.price ? 'Ask about this painting' : 'Ask for the price' }}
+            <AppIcon name="whatsapp" /> Ask about this painting
           </UiButton>
           <UiButton :variant="saved ? 'outline' : 'primary'" @click="save">
             <AppIcon name="heart" :size="18" :class="saved && 'fill-current text-ruby'" />
@@ -300,12 +285,12 @@ function save() {
       </div>
     </section>
 
-    <!-- Phones: price and enquiry always within reach -->
+    <!-- Phones: save and enquire always within reach -->
     <div class="fixed inset-x-0 bottom-0 z-30 border-t border-ink/10 bg-marble/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-md lg:hidden">
       <div class="mx-auto flex h-16 max-w-[640px] items-center gap-3 px-4">
         <div class="min-w-0 flex-1">
-          <p class="truncate text-sm text-ink-muted">{{ product.name }}</p>
-          <p class="truncate font-display text-lg leading-tight" :class="!product.price && 'text-peacock-3'">{{ priceLabel(product) }}</p>
+          <p class="truncate text-sm text-ink-muted">{{ category?.name }}</p>
+          <p class="truncate font-display text-lg leading-tight">{{ product.name }}</p>
         </div>
         <button
           class="grid size-11 shrink-0 place-items-center rounded-full border transition-colors"

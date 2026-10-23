@@ -231,7 +231,7 @@ onMounted(async () => {
           <RevealText text="Terms & Conditions" class="font-display text-[clamp(30px,3.4vw,46px)] leading-tight" />
           <p class="mt-2 text-sm text-ink-muted">Draft wording, to be confirmed by INDIAN CRAFTS INDUSTRY.</p>
           <div class="mt-6 grid gap-4 text-lg text-ink-soft">
-            <p>Prices and availability shown on this website are confirmed with you at the time of your enquiry.</p>
+            <p>Prices, availability and details are shared and confirmed with you at the time of your enquiry.</p>
             <p>We photograph and describe every piece as accurately as we can. Colours can look slightly different on different screens, and handmade pieces can show small natural variations.</p>
             <p>The full terms for your purchase, including payment, delivery and returns, are shared with you before you pay.</p>
           </div>

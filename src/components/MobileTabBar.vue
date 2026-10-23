@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // Thumb-reach navigation for phones and tablets. Product pages hide it and
-// show their own price + enquiry bar instead.
+// show their own save + enquiry bar instead.
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import AppIcon, { type IconName } from './AppIcon.vue'

@@ -8,7 +8,6 @@ import MarqueeBand from '../components/MarqueeBand.vue'
 import { exclusiveProducts } from '../data/exclusive'
 import { getCollection } from '../data/collections'
 import { whatsappLink } from '../data/site'
-import { priceLabel } from '../lib/format'
 import { inBag, toggleBag } from '../lib/bag'
 import { scrollToId } from '../lib/motion'
 import type { ArtTheme } from '../types'
@@ -61,7 +60,7 @@ const promises: { icon: IconName; title: string; text: string }[] = [
           <ArtFrame :product="featured" dark eager sizes="(max-width: 1024px) 80vw, 40vw" class="h-[56vh] max-h-[620px] transition-transform duration-700 ease-silk group-hover:-translate-y-2" />
           <span class="mt-5 block text-center">
             <span class="block font-display text-2xl group-hover:text-zari-light">{{ featured.name }}</span>
-            <span class="text-base text-marble/65">{{ featured.art?.size }}, {{ priceLabel(featured) }}</span>
+            <span class="text-base text-marble/65">{{ featured.art?.size }}</span>
           </span>
         </RouterLink>
       </div>
@@ -129,14 +128,13 @@ const promises: { icon: IconName; title: string; text: string }[] = [
             >
               <AppIcon name="heart" :size="18" :class="inBag(p.id) && 'fill-current'" />
             </button>
-            <div class="mt-4 sm:mt-5 sm:flex sm:items-start sm:justify-between sm:gap-4">
+            <div class="mt-4 sm:mt-5">
               <div>
                 <h3 class="font-display text-[clamp(19px,2vw,22px)] leading-snug">
                   <RouterLink :to="`/product/${p.id}`" class="hover:text-peacock-3">{{ p.name }}</RouterLink>
                 </h3>
                 <p class="mt-1 text-base text-ink-muted">{{ p.art?.theme }}<template v-if="p.art?.size">, {{ p.art.size }}</template></p>
               </div>
-              <p class="mt-1 shrink-0 text-base font-medium sm:mt-0 sm:pt-1" :class="p.price ? 'text-ink' : 'text-peacock-3'">{{ priceLabel(p) }}</p>
             </div>
           </article>
         </TransitionGroup>

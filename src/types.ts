@@ -25,7 +25,7 @@ export interface Product {
   id: string
   name: string
   category: string
-  /** Leave out for "Price on request" */
+  /** Kept for the client's records only: prices are never shown on the site */
   price?: number
   mrp?: number
   tag?: string

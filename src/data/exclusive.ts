@@ -2,8 +2,8 @@
 // The Exclusive Collection: the client's own original paintings.
 // Photos live in /public/images/exclusive (a 1400px and an 800px version of
 // each, plus "-room" photos where the client supplied a wall mock-up).
-// Every painting is "Price on request" (the client asked not to show painting
-// prices). Sizes are filled in where the client's photos state them.
+// No prices are shown anywhere on the site (the client's request); they are
+// shared personally. Sizes are filled in where the client's photos state them.
 // ---------------------------------------------------------------------------
 import type { Product } from '../types'
 

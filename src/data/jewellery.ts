@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------------------
 // Jewellery from the client's own photos (cut out of their social posters,
 // text removed). Photos live in /public/images/jewellery as name.jpg plus
-// name-800.jpg. Prices are on request, and metal and stones are only named
+// name-800.jpg. Prices are never shown, and metal and stones are only named
 // once the client confirms them, as the content handover asks.
 // ---------------------------------------------------------------------------
 import type { Product } from '../types'

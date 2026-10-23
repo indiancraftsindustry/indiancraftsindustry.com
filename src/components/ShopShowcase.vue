@@ -50,7 +50,7 @@ const items = computed(() => filters.find((f) => f.key === active.value)!.items)
           </button>
         </div>
       </div>
-      <ProductGrid :key="active" :items="items" :initial="8" hide-price />
+      <ProductGrid :key="active" :items="items" :initial="8" />
     </div>
   </section>
 </template>

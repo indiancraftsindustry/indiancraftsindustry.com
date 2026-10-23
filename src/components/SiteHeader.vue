@@ -9,7 +9,6 @@ import { categoryName, products } from '../data/catalog'
 import { artefactCollections, mainCollections } from '../data/collections'
 import { bag } from '../lib/bag'
 import { install, promptInstall } from '../lib/install'
-import { priceLabel } from '../lib/format'
 import { onScrollFrame } from '../lib/motion'
 
 const route = useRoute()
@@ -313,7 +312,7 @@ function isActive(to: string) {
                 </span>
                 <span>
                   <span class="block font-display text-xl group-hover:text-zari-deep">{{ p.name }}</span>
-                  <span class="text-sm text-ink-muted">{{ categoryName(p.category) }}, {{ priceLabel(p) }}</span>
+                  <span class="text-sm text-ink-muted">{{ categoryName(p.category) }}</span>
                 </span>
               </RouterLink>
             </li>

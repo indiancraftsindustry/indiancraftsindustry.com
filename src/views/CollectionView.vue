@@ -18,7 +18,7 @@ import { collections, getCollection } from '../data/collections'
 import { whatsappLink } from '../data/site'
 import { scrollToId } from '../lib/motion'
 
-type Sort = 'featured' | 'price-asc' | 'price-desc' | 'name'
+type Sort = 'featured' | 'name'
 
 const route = useRoute()
 const router = useRouter()
@@ -31,7 +31,8 @@ const others = computed(() => collections.filter((c) => c.slug !== collection.va
 const sub = computed(() => String(route.params.category ?? ''))
 const subCategories = computed(() => categories.filter((c) => collection.value?.productCategories?.includes(c.slug)))
 const q = computed(() => String(route.query.q ?? ''))
-const sort = computed(() => String(route.query.sort ?? 'featured') as Sort)
+// old links may still carry ?sort=price-…; anything unknown means the featured order
+const sort = computed<Sort>(() => (route.query.sort === 'name' ? 'name' : 'featured'))
 
 function setQuery(patch: Record<string, string | undefined>) {
   router.replace({ query: { ...route.query, ...patch } })
@@ -47,9 +48,6 @@ const list = computed(() => {
       (!term || `${p.name} ${p.short} ${categoryName(p.category)} ${Object.values(p.specs).join(' ')}`.toLowerCase().includes(term)),
   )
   const sorted = [...filtered]
-  // Pieces without a fixed price go to the end of either price order
-  if (sort.value === 'price-asc') sorted.sort((a, b) => (a.price ?? Infinity) - (b.price ?? Infinity))
-  if (sort.value === 'price-desc') sorted.sort((a, b) => (b.price ?? -1) - (a.price ?? -1))
   if (sort.value === 'name') sorted.sort((a, b) => a.name.localeCompare(b.name))
   return sorted
 })
@@ -181,8 +179,6 @@ const enquiry = computed(() =>
               @change="setQuery({ sort: ($event.target as HTMLSelectElement).value === 'featured' ? undefined : ($event.target as HTMLSelectElement).value })"
             >
               <option value="featured">Featured</option>
-              <option value="price-asc">Price, low to high</option>
-              <option value="price-desc">Price, high to low</option>
               <option value="name">Name, A to Z</option>
             </select>
           </label>

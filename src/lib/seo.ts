@@ -5,7 +5,6 @@ import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import { boutiques, site } from '../data/site'
 import { collectionForCategory, collections, getCollection, JEWELLERY_CATEGORIES } from '../data/collections'
 import { getCategory, getProduct, products } from '../data/catalog'
-import { formatPrice } from './format'
 import { imgUrl } from './img'
 import type { Boutique, Product } from '../types'
 
@@ -56,7 +55,6 @@ const title = (page: string) => `${page} | ${BRAND}`
 /** The client's own pieces (their photos) are indexed; sample listings with stock photos are not. */
 export const isClientPiece = (p: Product) => p.images.every((i) => i.startsWith('images/'))
 const productPath = (p: Product) => `/product/${p.id}`
-const priceText = (p: Product) => (p.price ? `Price ${formatPrice(p.price)}` : 'Price on request')
 
 // ------------------------------------------------------------- structured data
 
@@ -137,8 +135,8 @@ function dimensions(p: Product): Json {
 }
 
 function productLd(p: Product, url: string): Json {
-  const offers = p.price ? { '@type': 'Offer', price: p.price, priceCurrency: 'INR', url, seller: { '@id': ORG_ID } } : undefined
-  const common = { name: p.name, description: p.description.join(' '), image: p.images.map(assetUrl), url, ...(offers && { offers }) }
+  // prices are shared personally, so no Offer is published
+  const common = { name: p.name, description: p.description.join(' '), image: p.images.map(assetUrl), url }
   if (p.art) {
     return {
       '@type': 'VisualArtwork',
@@ -334,8 +332,8 @@ export function seoFor(route: RouteLocationNormalizedLoaded): Head {
     if (cat && JEWELLERY_CATEGORIES.includes(cat.slug)) crumbs.push([cat.name, `/collections/jewellery/${cat.slug}`])
     crumbs.push([p.name, productPath(p)])
     const description = isArt
-      ? `${p.short} Original ${(p.art?.kind ?? 'painting').toLowerCase()}${p.art?.size ? `, ${p.art.size}` : ''}, only one exists. ${priceText(p)}.`
-      : `${p.short} ${priceText(p)}. See it in our boutiques or ask on WhatsApp.`
+      ? `${p.short} Original ${(p.art?.kind ?? 'painting').toLowerCase()}${p.art?.size ? `, ${p.art.size}` : ''}, only one exists. Ask us on WhatsApp for details.`
+      : `${p.short} See it in our boutiques or ask on WhatsApp.`
     return build({
       title: title(isArt ? `${p.name}, Original ${p.art?.kind ?? 'Painting'}` : p.name),
       description: clip(description),

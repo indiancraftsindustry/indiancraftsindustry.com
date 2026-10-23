@@ -5,7 +5,7 @@ import AppIcon from './AppIcon.vue'
 import ProductCard from './ProductCard.vue'
 import type { Product } from '../types'
 
-defineProps<{ products: Product[]; label: string; hidePrice?: boolean }>()
+defineProps<{ products: Product[]; label: string }>()
 
 const track = ref<HTMLElement | null>(null)
 const progress = ref(0)
@@ -52,7 +52,7 @@ onBeforeUnmount(() => window.removeEventListener('resize', update))
         data-card
         class="w-[72%] shrink-0 snap-start sm:w-[42%] lg:w-[calc((100%-72px)/4)]"
       >
-        <ProductCard :product="p" :hide-price="hidePrice" />
+        <ProductCard :product="p" />
       </div>
     </div>
 
