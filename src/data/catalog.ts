@@ -9,6 +9,7 @@ import type { CareGuide, Category, Gemstone, Product } from '../types'
 import { exclusiveProducts } from './exclusive'
 import { clientJewellery } from './jewellery'
 import { clientArtefacts } from './artefacts'
+import { dharmaStatues } from './dharma-statues'
 
 // Editorial imagery used across the site
 export const media = {
@@ -582,7 +583,7 @@ const baseProducts: Product[] = [
 
 // Exclusive originals come first so they lead every "all products" listing
 // The client's own pieces come first in every jewellery category
-export const products: Product[] = [...exclusiveProducts, ...clientJewellery, ...clientArtefacts, ...baseProducts]
+export const products: Product[] = [...exclusiveProducts, ...clientJewellery, ...clientArtefacts, ...dharmaStatues, ...baseProducts]
 
 // The nine gemstones of Indian astrology (Navratna) and what people wear them for.
 export const navratna: Gemstone[] = [
