@@ -187,6 +187,8 @@ function save() {
       <div class="animate-rise [animation-delay:150ms]">
         <p class="text-base text-zari-deep">{{ category?.name }}</p>
         <h1 class="mt-2 font-display text-[clamp(32px,4.4vw,58px)] leading-[1.08]">{{ product.name }}</h1>
+        <!-- paintings: no amount anywhere on the site, only this line on their own page (client's wording) -->
+        <p v-if="art" class="mt-4 font-display text-[clamp(22px,2.4vw,28px)] text-peacock-3">Price on request</p>
 
         <p class="mt-6 text-lg text-ink-soft">{{ product.short }}</p>
 

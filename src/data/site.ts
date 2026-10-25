@@ -46,8 +46,26 @@ export const footerLinks = [
 
 // Current boutiques, in the order of the client's "Our present presence" (October 2026).
 export const boutiques: Boutique[] = [
-  { city: 'New Delhi', name: 'Pullman & Novotel New Delhi Aerocity', note: 'Hotel shopping arcade, Hospitality District, Aerocity', locality: 'New Delhi', region: 'Delhi' },
-  { city: 'New Delhi', name: 'Aloft New Delhi Aerocity', note: 'Hospitality District, Aerocity', locality: 'New Delhi', region: 'Delhi' },
+  {
+    city: 'New Delhi',
+    name: 'Pullman & Novotel New Delhi Aerocity',
+    note: 'Hotel shopping arcade, Hospitality District, Aerocity',
+    address: 'Asset No 2, GMR Hospitality District, Aerocity, IGI Airport, New Delhi 110037',
+    street: 'Asset No 2, GMR Hospitality District, Aerocity',
+    locality: 'New Delhi',
+    region: 'Delhi',
+    postalCode: '110037',
+  },
+  {
+    city: 'New Delhi',
+    name: 'Aloft New Delhi Aerocity',
+    note: 'Hospitality District, Aerocity',
+    address: 'Asset No 5B, Aerocity, New Delhi 110037',
+    street: 'Asset No 5B, Aerocity',
+    locality: 'New Delhi',
+    region: 'Delhi',
+    postalCode: '110037',
+  },
   { city: 'Noida', name: 'Radisson Noida', note: 'Sector 55, Noida', address: 'Sector 55, Noida', street: 'Sector 55', locality: 'Noida', region: 'Uttar Pradesh' },
   { city: 'Greater Noida', name: 'Radisson Blu Greater Noida', note: 'Hotel boutique, Greater Noida', locality: 'Greater Noida', region: 'Uttar Pradesh' },
   {

@@ -3,8 +3,8 @@
 // for the client's own product photos.
 
 const UNSPLASH_ID = /^\d{10,}-[0-9a-f]+$/
-// Local paintings ship as name.jpg (1400px) plus name-800.jpg; room photos have one size
-const LOCAL_SIZED = /^images\/(exclusive|collections|jewellery|boutique)\/(?!.*-room\.jpg$).+\.jpg$/
+// Local paintings ship as name.jpg (1400px) plus name-800.jpg; wall photos (-room, -wall) have one size
+const LOCAL_SIZED = /^images\/(exclusive|collections|jewellery|boutique)\/(?!.*-(room|wall)\.jpg$).+\.jpg$/
 const small = (src: string) => src.replace(/\.jpg$/, '-800.jpg')
 // Pages live at nested addresses (/collections/art/), so local files need an absolute path
 const local = (src: string) => (/^(https?:|\/)/.test(src) ? src : `${import.meta.env.BASE_URL}${src}`)

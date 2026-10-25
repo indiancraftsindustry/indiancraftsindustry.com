@@ -42,7 +42,7 @@ export const exclusiveProducts: Product[] = [
     category: 'exclusive',
     tag: 'Big Cats series',
     care: 'painting',
-    images: [img('tiger-family'), img('tiger-family-room')],
+    images: [img('tiger-family'), img('tiger-family-wall')],
     art: { theme: 'Animals', ratio: 1400 / 1064, size: '24 × 36 inches' },
     short: 'A tigress rests by a fallen tree while her two cubs peek over the log.',
     description: [
@@ -153,7 +153,7 @@ export const exclusiveProducts: Product[] = [
     category: 'exclusive',
     tag: 'Big Cats series',
     care: 'painting',
-    images: [img('tiger-in-the-bamboo'), img('tiger-in-the-bamboo-room')],
+    images: [img('tiger-in-the-bamboo'), img('tiger-in-the-bamboo-wall')],
     art: { theme: 'Animals', ratio: 1400 / 941, size: '24 × 36 inches' },
     short: 'A tiger’s face half-hidden behind bamboo leaves, one bright green eye looking straight at you.',
     description: [
