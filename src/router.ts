@@ -29,12 +29,37 @@ export const routes: RouteRecordRaw[] = [
   { path: '/:pathMatch(.*)*', name: 'not-found', component: () => import('./views/NotFoundView.vue') },
 ]
 
+const REMOVED_STATUES = [
+  'shiva-seated-on-nandi',
+  'shiva-and-parvati-heads',
+  'shiva-mukhalingam-antique',
+  'ardhanarishvara-dual-tone-statue',
+  'bhairav-green-gold-statue',
+  'somaskanda-with-arch-statue',
+  'shiva-parvati-dancing-statue',
+  'tandav-shiva-ring-of-flames-statue',
+  'standing-shiva-royal-black-statue',
+  'mahamrityunjaya-shiva-statue',
+  'meditating-shiva-royal-black-statue',
+  'shiva-head-with-ganga-statue',
+  'standing-shiva-stonework-statue',
+  'shiva-mukhalingam-gold-crown',
+  'shiva-parvati-faces-on-moon',
+  'vishapaharana-shiva-parvati-statue',
+  'nataraja-statue',
+  'shivling-seven-headed-serpent',
+  'blue-shiva-blessing-statue',
+  'shiv-parivar-on-nandi-statue',
+]
+
 /** Old addresses that now point elsewhere: [from, to]. Pre-built as redirect pages too. */
 export const redirects: [string, string][] = [
   ['/about', '/our-story'],
   ['/exclusive', '/collections/art'],
   ['/collections/exclusive', '/collections/art'],
   ...JEWELLERY_CATEGORIES.map((c): [string, string] => [`/collections/${c}`, `/collections/jewellery/${c}`]),
+  // statues removed on the client's request (photos carried another seller's watermark)
+  ...REMOVED_STATUES.map((id): [string, string] => [`/product/${id}`, '/collections/metal-artefacts']),
 ]
 
 export function createAppRouter(history: RouterHistory) {

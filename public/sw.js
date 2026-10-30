@@ -1,7 +1,7 @@
 // Service worker for the installable app. Pages always come from the network
 // first (so a new deploy shows straight away) and fall back to the last copy
 // when offline; built files and photos are served from cache for speed.
-const CACHE = 'ici-v2' // bumped so installed apps drop old photos (e.g. the priced tiger wall labels)
+const CACHE = 'ici-v3' // bumped so installed apps drop old photos (priced tiger labels, removed watermarked statues)
 const SCOPE = new URL(self.registration.scope).pathname
 
 self.addEventListener('install', (event) => {
